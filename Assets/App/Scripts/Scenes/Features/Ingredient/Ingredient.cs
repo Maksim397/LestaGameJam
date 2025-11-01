@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Libs.Physic;
 using App.Scripts.Scenes.Features.Ingredient.Overlap;
 using App.Scripts.Scenes.Features.PizzaData;
@@ -10,11 +11,8 @@ namespace App.Scripts.Scenes.Features.Ingredient
     {
         [SerializeField] private IngredientOverlapChecker _overlapChecker;
     
-        private List<Ingredient> _overlapIngredients = new List<Ingredient>();
-        
         public Pizza Pizza { get; private set; }
-    
-        public bool IsOverlap => _overlapIngredients.Count > 0;
+        public bool IsOverlap { get; private set; }
 
         public void SetPizza(Pizza pizza)
         {
@@ -23,8 +21,8 @@ namespace App.Scripts.Scenes.Features.Ingredient
 
         public void CheckOverlaps(IPhysicsService physics)
         {
-            if(_overlapChecker.TryGetOverlappedIngredients(physics, out IEnumerable<Ingredient> overlapIngredients))
-                _overlapIngredients = new List<Ingredient>(overlapIngredients);
+            _overlapChecker.TryGetOverlappedIngredients(physics, out IEnumerable<Ingredient> overlapIngredients);
+            IsOverlap = overlapIngredients.Any();
         }
     }
 }

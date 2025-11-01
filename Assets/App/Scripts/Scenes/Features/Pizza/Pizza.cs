@@ -26,7 +26,7 @@ namespace App.Scripts.Scenes.Features.PizzaData
       }
     }
 
-    public void Initialize(IPhysicsService physics)
+    public void UpdateOverlaps(IPhysicsService physics)
     {
       foreach (var ingredient in _ingredients) 
         ingredient.CheckOverlaps(physics);

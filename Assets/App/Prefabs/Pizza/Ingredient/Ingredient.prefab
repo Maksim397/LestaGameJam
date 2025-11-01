@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Ingredient>k__BackingField: {fileID: 2603735512145240741}
   <Root>k__BackingField: {fileID: 8301566609258109206}
+  _collider: {fileID: 4683829320571523603}
 --- !u!65 &4683829320571523603
 BoxCollider:
   m_ObjectHideFlags: 0

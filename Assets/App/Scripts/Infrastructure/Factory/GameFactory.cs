@@ -21,7 +21,7 @@ namespace App.Scripts.Infrastructure.Factory
     public Pizza CreatePizza(Pizza prefab, Transform parent)
     {
       Pizza pizza = Object.Instantiate(prefab, parent);
-      pizza.Initialize(_physics);
+      pizza.UpdateOverlaps(_physics);
       
       return pizza;
     }
@@ -34,8 +34,12 @@ namespace App.Scripts.Infrastructure.Factory
     
     public void RemoveIngredient(Ingredient ingredient)
     {
-      ingredient.Pizza?.RemoveIngredient(ingredient);
+      var pizza = ingredient.Pizza;
+      pizza?.RemoveIngredient(ingredient);
+      pizza?.UpdateOverlaps(_physics);
+      
       Object.Destroy(ingredient.gameObject);
+      
     }
   }
 }

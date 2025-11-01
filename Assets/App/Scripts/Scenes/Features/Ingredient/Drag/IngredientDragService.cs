@@ -57,6 +57,8 @@ public class IngredientDragService : ITickable
             _draggedObject = null; 
             return; 
         }
+        
+        _draggedObject.SetPhysicActive(false);
         _lockedYpos = _draggedObject.Root.position.y;
         _firstPickPlace = _draggedObject.Root.position;
     }
@@ -75,7 +77,6 @@ public class IngredientDragService : ITickable
 
     private void StopDragging()
     {
-        _draggedObject.Root.position = _firstPickPlace;
 
         Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
@@ -84,6 +85,11 @@ public class IngredientDragService : ITickable
                 && _draggedObject.gameObject.TryGetComponent<IngredientPhysicObject>(out var physicObject))
             {
                 _interactor.Interact(physicObject.Ingredient, holder);
+            }
+            else
+            {
+                _draggedObject.Root.position = _firstPickPlace;
+                _draggedObject.SetPhysicActive(true);
             }
         }
 
