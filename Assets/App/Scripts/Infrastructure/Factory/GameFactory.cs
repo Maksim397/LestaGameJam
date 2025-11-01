@@ -22,6 +22,7 @@ namespace App.Scripts.Infrastructure.Factory
     {
       Pizza pizza = Object.Instantiate(prefab, parent);
       pizza.UpdateOverlaps(_physics);
+      _levelModel.SetPizza(pizza);
       
       return pizza;
     }
