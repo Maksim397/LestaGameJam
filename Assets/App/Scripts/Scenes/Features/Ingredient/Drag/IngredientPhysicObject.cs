@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Scenes.Features.Ingredient;
+using UnityEngine;
 
 public class IngredientPhysicObject : MonoBehaviour
 {

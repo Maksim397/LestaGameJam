@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7be73011a8bf244853c97a41c5db04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OverlapObserver: {fileID: 7380875057756934524}
+  _overlapChecker: {fileID: 7859456276384092960}
 --- !u!1 &5579010679806960684
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,10 +156,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8342923825220234550}
-  - component: {fileID: 7380875057756934524}
+  - component: {fileID: 7859456276384092960}
   - component: {fileID: 8761124493346860192}
   m_Layer: 0
-  m_Name: OverlapTrigger
+  m_Name: "Overlap\u0421hecker"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8301566609258109206}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7380875057756934524
+--- !u!114 &7859456276384092960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,9 +189,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7706552962311889034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911e892f9d9f7994db4c570810e8a488, type: 3}
+  m_Script: {fileID: 11500000, guid: 9872ada7807d4a7eaebf7ceee6a3da05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ingredient: {fileID: 2603735512145240741}
+  _collider: {fileID: 8761124493346860192}
 --- !u!135 &8761124493346860192
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -212,4 +214,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.65
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}

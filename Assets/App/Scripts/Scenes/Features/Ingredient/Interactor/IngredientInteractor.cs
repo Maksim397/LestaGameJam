@@ -1,22 +1,23 @@
-using UnityEngine;
+using App.Scripts.Infrastructure.Factory;
+using App.Scripts.Scenes.Features.Ingredient;
 
 public class IngredientInteractor : IIngredientInteractor
 {
+    private readonly IGameFactory _gameFactory;
+    public IngredientInteractor(IGameFactory gameFactory)
+    {
+        _gameFactory = gameFactory;
+    }
+    
     public void Interact(Ingredient ingredient, Holder holder)
     {
         if (holder is Trash) 
         {
-            if (ingredient.Pizza != null) 
-                ingredient.Pizza.RemoveIngredient(ingredient);
-            
-            GameObject.Destroy(ingredient.gameObject);
+            _gameFactory.RemoveIngredient(ingredient);
         }
         else if (holder is Bowl)
         {
-            if (ingredient.Pizza != null) 
-                ingredient.Pizza.RemoveIngredient(ingredient);
-            
-            GameObject.Destroy(ingredient.gameObject);
+            _gameFactory.RemoveIngredient(ingredient);
         }
     }
 }

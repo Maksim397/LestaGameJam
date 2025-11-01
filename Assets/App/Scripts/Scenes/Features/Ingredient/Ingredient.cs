@@ -1,46 +1,30 @@
 using System.Collections.Generic;
-using App.Scripts.Libs;
+using App.Scripts.Libs.Physic;
+using App.Scripts.Scenes.Features.Ingredient.Overlap;
 using App.Scripts.Scenes.Features.PizzaData;
 using UnityEngine;
 
-public class Ingredient : MonoBehaviour
+namespace App.Scripts.Scenes.Features.Ingredient
 {
-    public Pizza Pizza { get; private set; }
-
-    [SerializeField] private TriggerObserver OverlapObserver;
+    public class Ingredient : MonoBehaviour
+    {
+        [SerializeField] private IngredientOverlapChecker _overlapChecker;
     
-    private readonly List<Ingredient> _overlapIngredients = new List<Ingredient>();
+        private List<Ingredient> _overlapIngredients = new List<Ingredient>();
+        
+        public Pizza Pizza { get; private set; }
     
-    public bool IsOverlap => _overlapIngredients.Count > 0;
+        public bool IsOverlap => _overlapIngredients.Count > 0;
 
+        public void SetPizza(Pizza pizza)
+        {
+            Pizza = pizza;
+        }
 
-    private void Start()
-    {
-        OverlapObserver.TriggerEnter += OnIngredientOverlapEnter;
-        OverlapObserver.TriggerExit += OnIngredientOverlapExit;
-    }
-
-    private void OnDestroy()
-    {
-        OverlapObserver.TriggerEnter -= OnIngredientOverlapEnter;
-        OverlapObserver.TriggerExit -= OnIngredientOverlapExit;
-    }
-
-    public void SetPizza(Pizza pizza)
-    {
-        Pizza = pizza;
-    }
-
-    private void OnIngredientOverlapEnter(Collider collideObject)
-    {
-        if (collideObject.TryGetComponent<IngredientPhysicObject>(out var physicObject)) 
-            _overlapIngredients.Add(physicObject.Ingredient);
-    }
-    
-    private void OnIngredientOverlapExit(Collider collideObject)
-    {
-        if (collideObject.TryGetComponent<IngredientPhysicObject>(out var physicObject) 
-            && _overlapIngredients.Contains(physicObject.Ingredient)) 
-            _overlapIngredients.Remove(physicObject.Ingredient);
+        public void CheckOverlaps(IPhysicsService physics)
+        {
+            if(_overlapChecker.TryGetOverlappedIngredients(physics, out IEnumerable<Ingredient> overlapIngredients))
+                _overlapIngredients = new List<Ingredient>(overlapIngredients);
+        }
     }
 }

@@ -4,6 +4,7 @@ using App.Scripts.Infrastructure.SaveLoad;
 using App.Scripts.Infrastructure.StaticData;
 using App.Scripts.Infrastructure.UIMediator;
 using App.Scripts.Libs.Configs.Loader;
+using App.Scripts.Libs.Physic;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +18,7 @@ namespace App.Scripts.Infrastructure.Installers
     {
       Container.Bind<UiMediator>().FromInstance(_uiMediator).AsSingle();
 
-      Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+      Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
       Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
       Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
       Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+using App.Scripts.Scenes.Features.Ingredient;
 public interface IIngredientInteractor
 {
     void Interact(Ingredient ingredient, Holder holder);
