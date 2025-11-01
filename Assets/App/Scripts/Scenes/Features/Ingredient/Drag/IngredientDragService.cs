@@ -4,21 +4,21 @@ using UnityEngine;
 using Zenject;
 using App.Scripts.Libs;
 
-public class IngridientDragService : ITickable
+public class IngredientDragService : ITickable
 {
     private LayerMask _pickableLayerMask = LayerMask.GetMask("IngridientDragObject");
     [SerializeField] private float _UPoffset = 0.1f;
 
     private float _lockedYpos;
-    private IngridientPhysicObject _draggedObject;
+    private IngredientPhysicObject _draggedObject;
     private Vector3 _firstPickPlace;
 
     private readonly ICameraService _cameraService;
     private readonly Table _table;
-    private readonly IIngridientInteractor _interactor;
+    private readonly IIngredientInteractor _interactor;
 
 
-    IngridientDragService(IIngridientInteractor interactor, ICameraService cameraService, Table table)
+    IngredientDragService(IIngredientInteractor interactor, ICameraService cameraService, Table table)
     {
         _interactor = interactor;
         _cameraService = cameraService;
@@ -51,7 +51,7 @@ public class IngridientDragService : ITickable
 
     private void StartDragging(Transform objectToDrag)
     {
-        _draggedObject = objectToDrag.GetComponent<IngridientPhysicObject>();
+        _draggedObject = objectToDrag.GetComponent<IngredientPhysicObject>();
         if (_draggedObject.Ingredient.IsOverlap) 
         { 
             _draggedObject = null; 
@@ -81,7 +81,7 @@ public class IngridientDragService : ITickable
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (hit.collider.TryGetComponent<Holder>(out var holder)
-                && _draggedObject.gameObject.TryGetComponent<IngridientPhysicObject>(out var physicObject))
+                && _draggedObject.gameObject.TryGetComponent<IngredientPhysicObject>(out var physicObject))
             {
                 _interactor.Interact(physicObject.Ingredient, holder);
             }

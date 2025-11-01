@@ -17,8 +17,8 @@ namespace App.Scripts.Scenes.Installers
       Container.Bind<Table>().FromInstance(_table).AsSingle();
       Container.Bind<PizzaContainer>().FromInstance(_pizzaContainer).AsSingle();
       Container.Bind<LevelModel>().AsSingle();
-      Container.BindInterfacesTo<IngridientDragService>().AsSingle();
-      Container.Bind<IIngridientInteractor>().To<IngridientInteractor>().AsSingle();
+      Container.BindInterfacesTo<IngredientDragService>().AsSingle();
+      Container.Bind<IIngredientInteractor>().To<IngredientInteractor>().AsSingle();
     }
   }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IngridientInteractor : IIngridientInteractor
+public class IngredientInteractor : IIngredientInteractor
 {
     public void Interact(Ingredient ingredient, Holder holder)
     {

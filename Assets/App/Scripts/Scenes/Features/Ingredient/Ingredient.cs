@@ -33,13 +33,13 @@ public class Ingredient : MonoBehaviour
 
     private void OnIngredientOverlapEnter(Collider collideObject)
     {
-        if (collideObject.TryGetComponent<IngridientPhysicObject>(out var physicObject)) 
+        if (collideObject.TryGetComponent<IngredientPhysicObject>(out var physicObject)) 
             _overlapIngredients.Add(physicObject.Ingredient);
     }
     
     private void OnIngredientOverlapExit(Collider collideObject)
     {
-        if (collideObject.TryGetComponent<IngridientPhysicObject>(out var physicObject) 
+        if (collideObject.TryGetComponent<IngredientPhysicObject>(out var physicObject) 
             && _overlapIngredients.Contains(physicObject.Ingredient)) 
             _overlapIngredients.Remove(physicObject.Ingredient);
     }
