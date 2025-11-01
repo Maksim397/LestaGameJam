@@ -1,5 +1,6 @@
 using App.Scripts.Infrastructure.Camera;
 using App.Scripts.Infrastructure.Factory;
+using App.Scripts.Scenes.Features.Level;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,7 @@ namespace App.Scripts.Scenes.Installers
     public override void InstallBindings()
     {
       Container.Bind<ICameraService>().To<CameraService>().AsSingle().WithArguments(_camera);
+      Container.Bind<LevelModel>().AsSingle();
     }
   }
 }
