@@ -10,6 +10,7 @@ namespace App.Scripts.Scenes.Installers
     {
       Container.Bind<GameState>().To<StateSetupLevel>().AsSingle();
       Container.Bind<GameState>().To<StateProcessGame>().AsSingle();
+      Container.Bind<GameState>().To<StateGameEnd>().AsSingle();
       
       Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
     }

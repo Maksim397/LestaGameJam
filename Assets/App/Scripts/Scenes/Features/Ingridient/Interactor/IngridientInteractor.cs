@@ -6,14 +6,17 @@ public class IngridientInteractor : IIngridientInteractor
     {
         if (holder is Trash) 
         {
-            Debug.Log("trash thrown");
+            if (ingredient.Pizza != null) 
+                ingredient.Pizza.RemoveIngredient(ingredient);
+            
             GameObject.Destroy(ingredient.gameObject);
         }
         else if (holder is Bowl)
         {
-            Debug.Log("food in bowl: " + holder.gameObject.name);
+            if (ingredient.Pizza != null) 
+                ingredient.Pizza.RemoveIngredient(ingredient);
+            
             GameObject.Destroy(ingredient.gameObject);
         }
-        
     }
 }

@@ -50,7 +50,7 @@ namespace App.Scripts.Scenes.States
         RemovePizza();
         _levelModel.IncreaseCollectedPizzas();
 
-        if (CollectedPizzas > LevelData.Pizzas.Count)
+        if (CollectedPizzas >= LevelData.Pizzas.Count)
         {
           _levelModel.SetLevelResult(LevelResult.Win);
           StateMachine.ChangeState<StateGameEnd>();
