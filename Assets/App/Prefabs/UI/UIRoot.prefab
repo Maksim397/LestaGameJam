@@ -2771,11 +2771,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadingScreen: {fileID: 4229331815354528359}
-  _pauseWindow: {fileID: 0}
-  _winWindow: {fileID: 0}
-  _gameOverWindow: {fileID: 0}
-  _startWindow: {fileID: 0}
-  _inGameWindow: {fileID: 0}
+  _pauseWindow: {fileID: 8515456974680262392}
+  _winWindow: {fileID: 593056934013210947}
+  _gameOverWindow: {fileID: 7884899942967994539}
+  _startWindow: {fileID: 3033853153894096481}
+  _inGameWindow: {fileID: 5053309959265907755}
 --- !u!223 &6162171576449530444
 Canvas:
   m_ObjectHideFlags: 0
@@ -4282,7 +4282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2826910777608235574
 RectTransform:
   m_ObjectHideFlags: 0
