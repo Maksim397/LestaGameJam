@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7be73011a8bf244853c97a41c5db04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _horizontalDragObject: {fileID: 528276047205931874}
   OverlapObserver: {fileID: 7380875057756934524}
 --- !u!1 &5579010679806960684
 GameObject:
@@ -125,12 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea61a58f1014869889ba357c660f6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _root: {fileID: 8301566609258109206}
-  _UPoffset: 0.1
-  _minX: -2.514
-  _maxX: 0.423
-  _minZ: -3.421
-  _maxZ: -2.124
+  <Root>k__BackingField: {fileID: 8301566609258109206}
 --- !u!65 &4683829320571523603
 BoxCollider:
   m_ObjectHideFlags: 0
