@@ -1,20 +1,35 @@
+using System;
+using App.Scripts.Infrastructure.Camera;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
-public class Ingredient : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Ingredient : MonoBehaviour
 {
-  public void OnBeginDrag(PointerEventData eventData)
+  private ICameraService _cameraService;
+
+  [Inject]
+  private void Construct(ICameraService cameraService)
   {
-    
+    _cameraService = cameraService;
   }
   
-  public void OnDrag(PointerEventData eventData)
+  private void OnMouseDown()
   {
-    
+    Debug.Log("OnBeginDrag");
+  }
+
+  private void OnMouseDrag()
+  {
+    Debug.Log("OnDrag");
+  }
+
+  private void OnMouseUp()
+  {
+    Debug.Log("OnEndDrag");
   }
   
-  public void OnEndDrag(PointerEventData eventData)
+  public void OnPointerUp(PointerEventData eventData)
   {
-    
   }
 }
