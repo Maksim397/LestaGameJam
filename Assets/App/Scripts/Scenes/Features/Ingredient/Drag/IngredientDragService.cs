@@ -4,21 +4,21 @@ using UnityEngine;
 using Zenject;
 using App.Scripts.Libs;
 
-public class IngridientDragService : ITickable
+public class IngredientDragService : ITickable
 {
     private LayerMask _pickableLayerMask = LayerMask.GetMask("IngridientDragObject");
     [SerializeField] private float _UPoffset = 0.1f;
 
     private float _lockedYpos;
-    private IngridientDragObject _draggedObject;
+    private IngredientPhysicObject _draggedObject;
     private Vector3 _firstPickPlace;
 
     private readonly ICameraService _cameraService;
     private readonly Table _table;
-    private readonly IIngridientInteractor _interactor;
+    private readonly IIngredientInteractor _interactor;
 
 
-    IngridientDragService(IIngridientInteractor interactor, ICameraService cameraService, Table table)
+    IngredientDragService(IIngredientInteractor interactor, ICameraService cameraService, Table table)
     {
         _interactor = interactor;
         _cameraService = cameraService;
@@ -51,7 +51,14 @@ public class IngridientDragService : ITickable
 
     private void StartDragging(Transform objectToDrag)
     {
-        _draggedObject = objectToDrag.GetComponent<IngridientDragObject>();
+        _draggedObject = objectToDrag.GetComponent<IngredientPhysicObject>();
+        if (_draggedObject.Ingredient.IsOverlap) 
+        { 
+            _draggedObject = null; 
+            return; 
+        }
+        
+        _draggedObject.SetPhysicActive(false);
         _lockedYpos = _draggedObject.Root.position.y;
         _firstPickPlace = _draggedObject.Root.position;
     }
@@ -70,15 +77,19 @@ public class IngridientDragService : ITickable
 
     private void StopDragging()
     {
-        _draggedObject.Root.position = _firstPickPlace;
 
         Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (hit.collider.TryGetComponent<Holder>(out var holder)
-                && _draggedObject.gameObject.TryGetComponentInParent<Ingredient>(out var ingredient))
+                && _draggedObject.gameObject.TryGetComponent<IngredientPhysicObject>(out var physicObject))
             {
-                _interactor.Interact(ingredient, holder);
+                _interactor.Interact(physicObject.Ingredient, holder);
+            }
+            else
+            {
+                _draggedObject.Root.position = _firstPickPlace;
+                _draggedObject.SetPhysicActive(true);
             }
         }
 

@@ -67,21 +67,11 @@ namespace App.Scripts.Scenes.States
       SpawnPizza();
     }
     
-    private Pizza SpawnPizza()
-    {
-      var pizza = _gameFactory.CreatePizza(
-        PizzaVariantsByCollectedAmount(CollectedPizzas).PickRandom(),
-        _pizzaContainer.transform);
+    private Pizza SpawnPizza() => 
+      _gameFactory.CreatePizza(
+      PizzaVariantsByCollectedAmount(CollectedPizzas).PickRandom(),
+      _pizzaContainer.transform);
 
-      _levelModel.SetPizza(pizza);
-      
-      return pizza;
-    }
-    
-    private void RemovePizza()
-    {
-      Object.Destroy(_levelModel.Pizza.gameObject);
-      _levelModel.SetPizza(null);
-    }
+    private void RemovePizza() =>_gameFactory.RemovePizza();
   }
 }
