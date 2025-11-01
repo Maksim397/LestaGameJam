@@ -26,25 +26,13 @@ public class InGameWindow : MonoBehaviour
             countdownCoroutine = null;
         }
     }
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
+    public void Show() => gameObject.SetActive(true);
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
-    
-    void Start()
-    {
-        _pauseButton.onClick.AddListener(OnPause);
-    }
+    public void Hide() => gameObject.SetActive(false);
 
-    private void OnDestroy()
-    {
-        _pauseButton.onClick.RemoveListener(OnPause);
-    }
+    void Start() => _pauseButton.onClick.AddListener(OnPause);
+
+    private void OnDestroy() => _pauseButton.onClick.RemoveListener(OnPause);
 
     private void OnPause()
     {
@@ -72,9 +60,5 @@ public class InGameWindow : MonoBehaviour
         
     }
 
-    private void UpdateTimerDisplay(TimeSpan remainingTime)
-    {
-        _timer.text = remainingTime.ToString(@"mm\:ss");
-    }
-    
+    private void UpdateTimerDisplay(TimeSpan remainingTime) => _timer.text = remainingTime.ToString(@"mm\:ss");
 }

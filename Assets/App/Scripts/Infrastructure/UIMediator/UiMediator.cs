@@ -33,10 +33,6 @@ namespace App.Scripts.Infrastructure.UIMediator
         public void ShowInGameWindow() => _inGameWindow.Show();
         public void HideInGameWindow() => _inGameWindow.Hide();
 
-        public void Start()
-        {
-            StartCountdown(TimeSpan.FromSeconds(60f));
-        }
 
         public void StartCountdown(TimeSpan startTime) => _inGameWindow.StartTimer(startTime);
 
