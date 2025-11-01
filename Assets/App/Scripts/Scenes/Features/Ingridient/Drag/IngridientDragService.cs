@@ -10,7 +10,7 @@ public class IngridientDragService : ITickable
     [SerializeField] private float _UPoffset = 0.1f;
 
     private float _lockedYpos;
-    private IngridientDragObject _draggedObject;
+    private IngridientPhysicObject _draggedObject;
     private Vector3 _firstPickPlace;
 
     private readonly ICameraService _cameraService;
@@ -51,8 +51,8 @@ public class IngridientDragService : ITickable
 
     private void StartDragging(Transform objectToDrag)
     {
-        _draggedObject = objectToDrag.GetComponent<IngridientDragObject>();
-        if (_draggedObject.Ingridient.IsOverlap) 
+        _draggedObject = objectToDrag.GetComponent<IngridientPhysicObject>();
+        if (_draggedObject.Ingredient.IsOverlap) 
         { 
             _draggedObject = null; 
             return; 
@@ -81,9 +81,9 @@ public class IngridientDragService : ITickable
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (hit.collider.TryGetComponent<Holder>(out var holder)
-                && _draggedObject.gameObject.TryGetComponentInParent<Ingredient>(out var ingredient))
+                && _draggedObject.gameObject.TryGetComponent<IngridientPhysicObject>(out var physicObject))
             {
-                _interactor.Interact(ingredient, holder);
+                _interactor.Interact(physicObject.Ingredient, holder);
             }
         }
 

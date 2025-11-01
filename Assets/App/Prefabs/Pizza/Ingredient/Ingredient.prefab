@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 528276047205931874}
   - component: {fileID: 4683829320571523603}
   m_Layer: 6
-  m_Name: DragObject
+  m_Name: Physic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea61a58f1014869889ba357c660f6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Ingredient>k__BackingField: {fileID: 2603735512145240741}
   <Root>k__BackingField: {fileID: 8301566609258109206}
 --- !u!65 &4683829320571523603
 BoxCollider:
