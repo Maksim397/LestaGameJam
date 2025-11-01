@@ -1,4 +1,5 @@
 using App.Scripts.Infrastructure.Camera;
+using App.Scripts.Infrastructure.Factory;
 using UnityEngine;
 using Zenject;
 
