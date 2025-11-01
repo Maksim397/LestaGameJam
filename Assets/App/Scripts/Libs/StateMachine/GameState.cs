@@ -4,16 +4,20 @@ namespace App.Scripts.Libs.StateMachine
   {
     public GameStateMachine StateMachine { get; set; }
 
-    public virtual void OnExitState()
-    {
-    }
-
     public virtual void OnEnterState()
     {
+      
     }
+    
+    public virtual void OnExitState()
+    {
+      
+    }
+
 
     public virtual void Tick()
     {
+      
     }
   }
 }
