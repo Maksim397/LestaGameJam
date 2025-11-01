@@ -327,8 +327,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1807025099734616792, guid: 227ecdb527199904293b025543798b26, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1002078403}
   m_SourcePrefab: {fileID: 100100000, guid: 227ecdb527199904293b025543798b26, type: 3}
+--- !u!1 &1002078401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1807025099734616792, guid: 227ecdb527199904293b025543798b26, type: 3}
+  m_PrefabInstance: {fileID: 1002078400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1002078402 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3071667147323088006, guid: 227ecdb527199904293b025543798b26, type: 3}
+  m_PrefabInstance: {fileID: 1002078400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1002078403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002078401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b193b34e7b8df94fab410f28dedddaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Collider>k__BackingField: {fileID: 1002078402}
 --- !u!114 &1403948859 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6274463767624825553, guid: 227ecdb527199904293b025543798b26, type: 3}
@@ -487,6 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 7149634475166144015}
+  _table: {fileID: 1002078403}
   _pizzaContainer: {fileID: 1403948859}
 --- !u!20 &7149634475166144015 stripped
 Camera:
