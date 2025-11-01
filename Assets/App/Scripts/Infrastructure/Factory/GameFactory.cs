@@ -9,10 +9,6 @@ namespace App.Scripts.Infrastructure.Factory
   {
     public IEnumerable<ISavedProgress> ProgressWriters { get; }
     
-    public GameFactory()
-    {
-      
-    }
 
     public Pizza CreatePizza(Pizza prefab, Transform parent)
     {

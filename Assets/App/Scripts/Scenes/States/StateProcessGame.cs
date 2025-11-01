@@ -4,7 +4,9 @@ using App.Scripts.Infrastructure.StaticData;
 using App.Scripts.Libs;
 using App.Scripts.Libs.StateMachine;
 using App.Scripts.Scenes.Features.Level;
+using App.Scripts.Scenes.Features.Level.Data;
 using App.Scripts.Scenes.Features.PizzaData;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.States
@@ -14,31 +16,72 @@ namespace App.Scripts.Scenes.States
     private readonly LevelModel _levelModel;
     private readonly IGameFactory _gameFactory;
     private readonly IStaticDataService _staticData;
-    
-    private List<Pizza> PizzaVariantsForLevel(int level) => LevelData.Pizzas[level].Variants;
+    private readonly PizzaContainer _pizzaContainer;
+
+    private List<Pizza> PizzaVariantsByCollectedAmount(int collectedAmount) => LevelData.Pizzas[collectedAmount].Variants;
+    private int CollectedPizzas => _levelModel.CollectedPizzas;
 
     //TODO: refactor to many levels
     private LevelData LevelData => _staticData.Levels.Data[0];
 
-    public StateProcessGame(LevelModel levelModel, IGameFactory gameFactory, IStaticDataService staticData)
+    public StateProcessGame(LevelModel levelModel, IGameFactory gameFactory, IStaticDataService staticData, 
+      PizzaContainer pizzaContainer)
     {
       _levelModel = levelModel;
       _gameFactory = gameFactory;
       _staticData = staticData;
+      _pizzaContainer = pizzaContainer;
     }
     
     public override void OnEnterState()
     {
-      // int level = _levelModel.CollectedPizzas;
-      // _gameFactory.CreatePizza(_levelModel.Pizza, PizzaVariantsForLevel(level).PickRandom().transform);
+      SpawnPizza();
     }
-    
+
     public override void Tick()
     {
-      // if (_levelModel.Pizza.IsReady)
-      // {
-      //   Debug.Log("Pizza is ready!");
-      // }
+      if (_levelModel.Pizza == false)
+        return;
+
+      if (_levelModel.Pizza.IsReady)
+      {
+        Debug.Log("Pizza is ready!"); 
+
+        RemovePizza();
+        _levelModel.IncreaseCollectedPizzas();
+
+        if (CollectedPizzas > LevelData.Pizzas.Count)
+        {
+          _levelModel.SetLevelResult(LevelResult.Win);
+          StateMachine.ChangeState<StateGameEnd>();
+          return;
+        }
+        
+        SpawnPizzaWithDelay(1000).Forget();
+      }
+    }
+
+    private async UniTaskVoid SpawnPizzaWithDelay(int spawnDelay)
+    {
+      await UniTask.Delay(spawnDelay);
+      SpawnPizza();
+    }
+    
+    private Pizza SpawnPizza()
+    {
+      var pizza = _gameFactory.CreatePizza(
+        PizzaVariantsByCollectedAmount(CollectedPizzas).PickRandom(),
+        _pizzaContainer.transform);
+
+      _levelModel.SetPizza(pizza);
+      
+      return pizza;
+    }
+    
+    private void RemovePizza()
+    {
+      Object.Destroy(_levelModel.Pizza.gameObject);
+      _levelModel.SetPizza(null);
     }
   }
 }
