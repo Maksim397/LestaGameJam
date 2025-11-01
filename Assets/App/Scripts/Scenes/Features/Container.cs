@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Container : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    virtual public void IngridientDropped(GameObject ingridient)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(ingridient);
     }
 }

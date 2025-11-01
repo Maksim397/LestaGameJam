@@ -11,7 +11,7 @@ public class Ingredient : MonoBehaviour
 
     private float _lockedYpos;
     [Header("Перемещение и ограничения")]
-    [SerializeField] private float _UPoffset = 0.1f; //На сколько поднимаются продукты
+    [SerializeField] private float _UPoffset = 0.1f;
     [SerializeField] private float _minX = -2.514f;
     [SerializeField] private float _maxX = 0.423f;
     [SerializeField] private float _minZ = -3.421f;
@@ -35,7 +35,7 @@ public class Ingredient : MonoBehaviour
     private void OnMouseDrag()
     {
         Vector3 nextPosition = GetMouseOnPlanePos() + new Vector3(0, _UPoffset, 0);
-        //применям ограничения
+
         nextPosition.x = Mathf.Clamp(nextPosition.x, _minX, _maxX);
         nextPosition.z = Mathf.Clamp(nextPosition.z, _minZ, _maxZ);
 
@@ -51,11 +51,11 @@ public class Ingredient : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Container container = hit.collider.GetComponent<Container>();
-            if (container != null) //-------------------------НАЙДЕН КОНТЕЙНЕР-------------------
+            if (container != null)
             {
                 Debug.Log("Found container: " + hit.collider.name);
-                Destroy(gameObject);
-            }                      //-------------------------------------------------------------
+                container.IngridientDropped(gameObject);
+            }
         }
     }
 
