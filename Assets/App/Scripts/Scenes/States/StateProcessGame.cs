@@ -52,8 +52,9 @@ namespace App.Scripts.Scenes.States
 
         if (CollectedPizzas > LevelData.Pizzas.Count)
         {
-          _levelModel.LevelResult = LevelResult.Win;
+          _levelModel.SetLevelResult(LevelResult.Win);
           StateMachine.ChangeState<StateGameEnd>();
+          return;
         }
         
         SpawnPizzaWithDelay(1000).Forget();

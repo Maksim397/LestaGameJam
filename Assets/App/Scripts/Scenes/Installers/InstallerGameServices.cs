@@ -8,10 +8,12 @@ namespace App.Scripts.Scenes.Installers
   public class InstallerGameServices : MonoInstaller
   {
     [SerializeField] private Camera _camera;
+    [SerializeField] private PizzaContainer _pizzaContainer;
     
     public override void InstallBindings()
     {
       Container.Bind<ICameraService>().To<CameraService>().AsSingle().WithArguments(_camera);
+      Container.Bind<PizzaContainer>().FromInstance(_pizzaContainer).AsSingle();
       Container.Bind<LevelModel>().AsSingle();
     }
   }
