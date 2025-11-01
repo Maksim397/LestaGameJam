@@ -52,6 +52,11 @@ public class IngridientDragService : ITickable
     private void StartDragging(Transform objectToDrag)
     {
         _draggedObject = objectToDrag.GetComponent<IngridientDragObject>();
+        if (_draggedObject.Ingridient.IsOverlap) 
+        { 
+            _draggedObject = null; 
+            return; 
+        }
         _lockedYpos = _draggedObject.Root.position.y;
         _firstPickPlace = _draggedObject.Root.position;
     }
