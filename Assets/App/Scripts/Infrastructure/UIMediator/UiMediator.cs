@@ -45,7 +45,7 @@ namespace App.Scripts.Infrastructure.UIMediator
         
 
         public void AddTime(TimeSpan time) => _inGameWindow.AddTime(time);
-
         public void RemoveTime(TimeSpan time) => _inGameWindow.RemoveTime(time);
+        public void ResetTime() => _inGameWindow.ResetTime();
     }
 }

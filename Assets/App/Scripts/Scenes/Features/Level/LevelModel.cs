@@ -8,14 +8,17 @@ namespace App.Scripts.Scenes.Features.Level
     public int CollectedPizzas { get; private set; }
     public Pizza Pizza { get; private set; }
     public LevelResult LevelResult { get; private set; }
+    public LevelData LevelData { get; private set; }
     
     public void Reset()
     {
       CollectedPizzas = 0;
       Pizza = null;
+      LevelData = null;
       LevelResult = LevelResult.Unknown;
     }
 
+    public void SetLevelData(LevelData levelData) => LevelData = levelData;
     public void SetLevelResult(LevelResult levelResult) => LevelResult = levelResult;
     public void SetPizza(Pizza pizza) => Pizza = pizza;
     public void IncreaseCollectedPizzas() => CollectedPizzas++;

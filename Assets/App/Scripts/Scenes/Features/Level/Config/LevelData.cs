@@ -7,6 +7,6 @@ namespace App.Scripts.Scenes.Features.Level
   public class LevelData
   {
     public List<PizzaVariants> Pizzas;
-    public float levelTimeSeconds;
+    public float LevelTimeSeconds;
   }
 }

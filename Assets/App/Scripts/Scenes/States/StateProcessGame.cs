@@ -15,21 +15,15 @@ namespace App.Scripts.Scenes.States
   {
     private readonly LevelModel _levelModel;
     private readonly IGameFactory _gameFactory;
-    private readonly IStaticDataService _staticData;
     private readonly PizzaContainer _pizzaContainer;
 
-    private List<Pizza> PizzaVariantsByCollectedAmount(int collectedAmount) => LevelData.Pizzas[collectedAmount].Variants;
+    private List<Pizza> PizzaVariantsByCollectedAmount(int collectedAmount) => _levelModel.LevelData.Pizzas[collectedAmount].Variants;
     private int CollectedPizzas => _levelModel.CollectedPizzas;
-
-    //TODO: refactor to many levels
-    private LevelData LevelData => _staticData.Levels.Data[0];
-
-    public StateProcessGame(LevelModel levelModel, IGameFactory gameFactory, IStaticDataService staticData, 
-      PizzaContainer pizzaContainer)
+    
+    public StateProcessGame(LevelModel levelModel, IGameFactory gameFactory, PizzaContainer pizzaContainer)
     {
       _levelModel = levelModel;
       _gameFactory = gameFactory;
-      _staticData = staticData;
       _pizzaContainer = pizzaContainer;
     }
     
@@ -50,7 +44,7 @@ namespace App.Scripts.Scenes.States
         RemovePizza();
         _levelModel.IncreaseCollectedPizzas();
 
-        if (CollectedPizzas >= LevelData.Pizzas.Count)
+        if (CollectedPizzas >= _levelModel.LevelData.Pizzas.Count)
         {
           _levelModel.SetLevelResult(LevelResult.Win);
           StateMachine.ChangeState<StateGameEnd>();
