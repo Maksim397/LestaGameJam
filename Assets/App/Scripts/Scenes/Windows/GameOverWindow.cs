@@ -40,7 +40,9 @@ public class GameOverWindow : MonoBehaviour
   
     private void OnRestart()
     {
+        Hide();
         _gameStateMachine.ChangeState<StateSetupLevel>();
+
     }
   
     private void OnMainMenu()

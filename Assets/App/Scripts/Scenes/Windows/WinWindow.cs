@@ -9,7 +9,8 @@ public class WinWindow : MonoBehaviour
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Transform _contentParent; 
     [SerializeField] private GameObject _recordPrefab;
-
+    
+    
     
     [SerializeField]private List<LeaderboardRecord> _records;
     
@@ -18,7 +19,6 @@ public class WinWindow : MonoBehaviour
 
     private void Start()
     {
-        SetPlayer("PlayerName", TimeSpan.FromSeconds(50f));
         _mainMenuButton.onClick.AddListener(OnMainMenu);
     }
 

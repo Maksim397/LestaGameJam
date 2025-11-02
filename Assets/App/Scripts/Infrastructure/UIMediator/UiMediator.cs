@@ -42,7 +42,10 @@ namespace App.Scripts.Infrastructure.UIMediator
         public void StartCountdown(TimeSpan startTime) => _inGameWindow.StartTimer(startTime);
         public void StopCountdown() => _inGameWindow.StopTimer();
 
-        
+        public void EndTime()
+        {
+            _inGameWindow.OnTimerEnded();
+        }
 
         public void AddTime(TimeSpan time) => _inGameWindow.AddTime(time);
         public void RemoveTime(TimeSpan time) => _inGameWindow.RemoveTime(time);

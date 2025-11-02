@@ -70,9 +70,10 @@ public class InGameWindow : MonoBehaviour
         OnTimerEnded();
     }
 
-    private void OnTimerEnded()
+    public void OnTimerEnded()
     {
-        
+        _uiMediator.HideInGameWindow();
+        _uiMediator.ShowGameOverWindow();
     }
 
     public void ResetTime()
