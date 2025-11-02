@@ -19,9 +19,6 @@ namespace App.Scripts.Infrastructure.SaveLoad
 
     public void SaveProgress()
     {
-      // foreach (var progressWriter in _gameFactory.ProgressWriters)
-      //   progressWriter.UpdateProgress(_progressService.Progress);
-
       PlayerPrefs.SetString(ProgressKey, _progressService.Progress.ToJson());
     }
 

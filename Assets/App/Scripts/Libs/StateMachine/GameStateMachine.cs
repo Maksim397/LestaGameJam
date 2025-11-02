@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Libs.StateMachine
 {
@@ -50,6 +51,7 @@ namespace App.Scripts.Libs.StateMachine
 
       _currentState = value;
       _currentState.OnEnterState();
+      _currentState.OnEnterStateAsync().Forget();
     }
 
     private void ExitState()

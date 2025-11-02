@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+
 namespace App.Scripts.Libs.StateMachine
 {
   public abstract class GameState
@@ -7,6 +9,11 @@ namespace App.Scripts.Libs.StateMachine
     public virtual void OnEnterState()
     {
       
+    }
+    
+    public virtual UniTask OnEnterStateAsync()
+    {
+      return UniTask.CompletedTask;
     }
     
     public virtual void OnExitState()
