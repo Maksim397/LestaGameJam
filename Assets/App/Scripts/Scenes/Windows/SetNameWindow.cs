@@ -23,15 +23,18 @@ public class SetNameWindow : MonoBehaviour
     private void Start() => _acceptButton.onClick.AddListener(OnAcceptName);
 
     private void OnDestroy() => _acceptButton.onClick.RemoveListener(OnAcceptName);
-    
+
+    private void OnAcceptName()
+    {
+        if (_inputField.text.Length != 0)
+        {
+            SetResult(_inputField.text);
+        }
+    }
+
     private void SetResult(string result)
     {
       _completionSource.TrySetResult(result);
       Hide();
-    }
-
-    private void OnAcceptName()
-    {
-        //Validation and return name logic
     }
 }
