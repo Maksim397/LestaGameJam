@@ -10,7 +10,9 @@ namespace App.Scripts.Scenes.Features.Ingredient
     public class Ingredient : MonoBehaviour
     {
         [SerializeField] private IngredientOverlapChecker _overlapChecker;
-    
+
+        [field: SerializeField] public IngredientType Type { get; private set; }
+        [field: SerializeField] public IngredientState State { get; private set; }
         public Pizza Pizza { get; private set; }
         public bool IsOverlap { get; private set; }
 
