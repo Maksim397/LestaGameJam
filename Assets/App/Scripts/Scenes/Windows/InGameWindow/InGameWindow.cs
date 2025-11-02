@@ -1,9 +1,7 @@
-
 using System;
 using System.Collections;
 using App.Scripts.Infrastructure.UIMediator;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +10,7 @@ public class InGameWindow : MonoBehaviour
     [SerializeField] public Button _pauseButton;
     [SerializeField] public TMP_Text _timer;
     [SerializeField] private UiMediator _uiMediator;
+    [SerializeField] public InGameWindowAnimator _animator;
 
     
     private TimeSpan _timerTime;
@@ -87,6 +86,8 @@ public class InGameWindow : MonoBehaviour
         StopTimer();
         _timerTime += time;
         StartTimer(_timerTime);
+        
+        _animator.ScaleTime();
     }
 
     public void RemoveTime(TimeSpan time)
@@ -94,6 +95,8 @@ public class InGameWindow : MonoBehaviour
         StopTimer();
         _timerTime -= time;
         StartTimer(_timerTime);
+        
+        _animator.ScaleTime();
     }
     private void UpdateTimerDisplay(TimeSpan remainingTime) => _timer.text = remainingTime.ToString(@"mm\:ss");
 }

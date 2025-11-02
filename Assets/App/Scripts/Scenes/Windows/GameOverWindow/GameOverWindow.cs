@@ -1,3 +1,4 @@
+using App.Scripts.Infrastructure.UIMediator;
 using App.Scripts.Libs.StateMachine;
 using App.Scripts.Scenes.States;
 using UnityEngine;
@@ -8,8 +9,10 @@ public class GameOverWindow : MonoBehaviour
 {
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
-
+    [SerializeField] private UiMediator _uiMediator;
+    
     private GameStateMachine _gameStateMachine;
+    
     
     [Inject]
     private void Construct(GameStateMachine gameStateMachine) => _gameStateMachine = gameStateMachine;
@@ -17,7 +20,7 @@ public class GameOverWindow : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
-        
+        _uiMediator.HideInGameWindow();
     }
 
     public void Hide()

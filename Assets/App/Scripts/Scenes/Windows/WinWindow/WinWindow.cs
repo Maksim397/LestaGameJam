@@ -9,8 +9,8 @@ public class WinWindow : MonoBehaviour
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Transform _contentParent; 
     [SerializeField] private GameObject _recordPrefab;
-    
-    
+
+    [SerializeField] private UiMediator _uiMediator;
     
     [SerializeField]private List<LeaderboardRecord> _records;
     
@@ -19,8 +19,8 @@ public class WinWindow : MonoBehaviour
 
     private void Start()
     {
-        SetPlayer("Player", TimeSpan.FromSeconds(100f));
         _mainMenuButton.onClick.AddListener(OnMainMenu);
+        _uiMediator.HideInGameWindow();
     }
 
     private void OnDestroy() => _mainMenuButton.onClick.RemoveListener(OnMainMenu);
