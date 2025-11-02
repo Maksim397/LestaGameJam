@@ -24,7 +24,7 @@ public class GameOverWindowAnimator : BaseAnimatorTween
     public void Hide()
     {
         CancelAnimation();
-        _windowTransform.localScale = Vector3.zero;
+        _windowTransform.localScale = Vector3.one;
         _windowTransform.gameObject.SetActive(true);
         
         var seq = DOTween.Sequence();

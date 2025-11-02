@@ -21,8 +21,8 @@ public class SetNameWindow : MonoBehaviour
 
     public void Hide()
     {
-        _animator.Hide();
         gameObject.SetActive(false);
+        _animator.Hide();
     }
 
     private void Start() => _acceptButton.onClick.AddListener(OnAcceptName);

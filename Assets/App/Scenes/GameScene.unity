@@ -269,6 +269,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 227ecdb527199904293b025543798b26, type: 3}
+--- !u!114 &1002078406 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8518659327890611493, guid: 227ecdb527199904293b025543798b26, type: 3}
+  m_PrefabInstance: {fileID: 1002078400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b193b34e7b8df94fab410f28dedddaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1403948859 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6274463767624825553, guid: 227ecdb527199904293b025543798b26, type: 3}
@@ -550,7 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 7149634475166144015}
-  _table: {fileID: 0}
+  _table: {fileID: 1002078406}
   _pizzaContainer: {fileID: 1403948859}
   _uiMediator: {fileID: 1576270074}
 --- !u!20 &7149634475166144015 stripped
