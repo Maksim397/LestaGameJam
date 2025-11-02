@@ -67,20 +67,22 @@ public class IngredientDragService : ITickable
         Vector3 nextPosition = GetMouseOnPlanePos();
 
         Bounds tableBounds = _table.Collider.bounds;
-
+        
         if (nextPosition.y == -10) 
         {
             nextPosition.x = _draggedObject.transform.position.x;
             nextPosition.z = _draggedObject.transform.position.z;
         }
-        nextPosition.x = Mathf.Clamp(nextPosition.x, tableBounds.min.x, tableBounds.max.x);
+        nextPosition.x = Math.Abs(nextPosition.x) > 100f ? 0 : Mathf.Clamp(nextPosition.x, tableBounds.min.x, tableBounds.max.x);
         nextPosition.y = _lockedYpos + _UPoffset;
-        nextPosition.z = Mathf.Clamp(nextPosition.z, tableBounds.min.z, tableBounds.max.z);
+        nextPosition.z = Math.Abs(nextPosition.z) > 100f ? 0 : Mathf.Clamp(nextPosition.z, tableBounds.min.z, tableBounds.max.z);
 
+        
         float multiplyer = Math.Abs(Vector3.Distance(_draggedObject.Root.position, nextPosition) * 1.3f);
         //Debug.Log("NextPos: " + nextPosition.x + " " + nextPosition.z + " - " + multiplyer);
-        if (multiplyer > 0.02f) 
+        if (multiplyer > 0.02f)
             _draggedObject.Root.position = _draggedObject.Root.position + (nextPosition - _draggedObject.Root.position) * multiplyer;
+        
     }
 
     private async UniTask StopDragging()
@@ -117,10 +119,17 @@ public class IngredientDragService : ITickable
         if (plane.Raycast(ray, out float dist) && dist < 100f) 
             return ray.GetPoint(dist);
         return new Vector3(0, 0, 0); // Change this*/
-        Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
+        /*Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
 
 
         if (Physics.Raycast(ray, out RaycastHit hit, 500f, CollisionLayer.MouseCanGo.AsMask()))
+            return hit.point;
+        Debug.Log("Не попал");
+        return new Vector3(0, -10, 0);*/
+        Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
+
+
+        if (Physics.SphereCast(ray, 0.1f, out RaycastHit hit, 500f, CollisionLayer.MouseCanGo.AsMask()))
             return hit.point;
         Debug.Log("Не попал");
         return new Vector3(0, -10, 0);
