@@ -22,8 +22,11 @@ public class InGameWindow : MonoBehaviour
         _timerTime = startTime;
         _countdownCoroutine = StartCoroutine(CountdownCoroutine(startTime));
     }
-    
-    
+
+    public TimeSpan GetTime()
+    {
+        return _timerTime;
+    }
     public void StopTimer()
     {
         if (_countdownCoroutine != null)
