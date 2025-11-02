@@ -1,6 +1,7 @@
 ﻿using System;
 using App.Scripts.Libs.LoadingScreen;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace App.Scripts.Infrastructure.UIMediator
@@ -17,6 +18,24 @@ namespace App.Scripts.Infrastructure.UIMediator
 
         private bool _isTimerRunning;
 
+        public event Action OnTimeEnd;
+
+        private void Start()
+        {
+            _inGameWindow.OnTimerEnd += OnTimerEnded;
+        }
+
+        private void OnDestroy()
+        {
+            _inGameWindow.OnTimerEnd -= OnTimerEnded;
+        }
+
+        private void OnTimerEnded()
+        {
+            OnTimeEnd?.Invoke();
+        }
+        
+        
         public void ShowLoadingScreen() => _loadingScreen.Show();
         public void HideLoadingScreen() => _loadingScreen.Hide();
 
@@ -42,10 +61,7 @@ namespace App.Scripts.Infrastructure.UIMediator
         public void StartCountdown(TimeSpan startTime) => _inGameWindow.StartTimer(startTime);
         public void StopCountdown() => _inGameWindow.StopTimer();
 
-        public void EndTime()
-        {
-            _inGameWindow.OnTimerEnded();
-        }
+        
 
         public void AddTime(TimeSpan time) => _inGameWindow.AddTime(time);
         public void RemoveTime(TimeSpan time) => _inGameWindow.RemoveTime(time);

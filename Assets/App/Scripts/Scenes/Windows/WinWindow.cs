@@ -19,6 +19,7 @@ public class WinWindow : MonoBehaviour
 
     private void Start()
     {
+        SetPlayer("Player", TimeSpan.FromSeconds(100f));
         _mainMenuButton.onClick.AddListener(OnMainMenu);
     }
 
