@@ -5,7 +5,6 @@ using Cysharp.Threading.Tasks;
 
 public class IngredientDragService : ITickable
 {
-    private LayerMask _pickableLayerMask = LayerMask.GetMask("IngridientDragObject");
     [SerializeField] private float _UPoffset = 0.1f;
 
     private float _lockedYpos;
@@ -30,7 +29,7 @@ public class IngredientDragService : ITickable
         {
             Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f, _pickableLayerMask))
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f, CollisionLayer.PickableIngredient.AsMask()))
             {
                 StartDragging(hit.transform);
             }
@@ -84,12 +83,8 @@ public class IngredientDragService : ITickable
         {
             if (objectToStopDragging.gameObject.TryGetComponent<IngredientPhysicObject>(out var physicObject))
             {
-                if (hit.collider.TryGetComponent<Holder>(out var holder) 
-                    && _interactor.TryInteract(physicObject.Ingredient, holder))
-                {
-
-                }
-                else
+                if (!(hit.collider.TryGetComponent<Holder>(out var holder) 
+                    && _interactor.TryInteract(physicObject.Ingredient, holder)))
                 {
                     await physicObject.Ingredient.Animator.ComebackTo(_firstPickPlace);
                     Debug.Log("JUMP");

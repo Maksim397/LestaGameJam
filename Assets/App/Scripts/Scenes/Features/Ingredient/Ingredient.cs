@@ -3,6 +3,7 @@ using System.Linq;
 using App.Scripts.Libs.Physic;
 using App.Scripts.Scenes.Features.Ingredient.Overlap;
 using App.Scripts.Scenes.Features.PizzaData;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.Features.Ingredient
@@ -26,6 +27,12 @@ namespace App.Scripts.Scenes.Features.Ingredient
         {
             _overlapChecker.TryGetOverlappedIngredients(physics, out IEnumerable<Ingredient> overlapIngredients);
             IsOverlap = overlapIngredients.Any();
+        }
+
+        public async UniTask FallAndDestroy()
+        {
+            await Animator.Fall();
+            Destroy(gameObject);
         }
     }
 }

@@ -66,11 +66,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ingredientTransform: {fileID: 8301566609258109206}
   _config:
-    UpOffset: 1
-    FallEase: 30
-    FallTime: 0.8
-    HideEase: 26
-    HideTime: 0.8
+    JumpStrenght: 0.3
+    JumpTime: 0.5
+    JumpFlips: 2
 --- !u!1 &5579010679806960684
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,21 @@ public class IngredientAnimator : BaseAnimatorTween
         var seq = DOTween.Sequence();
         seq.Append(_ingredientTransform.DOJump(positionToReturn, _config.JumpStrenght, 1, _config.JumpTime)).SetEase(Ease.Linear)
             .Join(_ingredientTransform
+                    .DOLocalRotate(new Vector3(0, 150, 360 * _config.JumpFlips), _config.JumpTime, RotateMode.FastBeyond360)
+                    .SetEase(Ease.Linear));
+
+        await PlaySequenceAsync(seq);
+    }
+
+    public async UniTask FallTarget(Transform target)
+    {
+        CancelAnimation();
+        Vector3 startPos = _ingredientTransform.position;
+        UnityEngine.Random.Range();
+
+        var seq = DOTween.Sequence();
+        seq.Append(_ingredientTransform.DOJump(startPos - new Vector3(0, 0.3f, 0), _config.JumpStrenght, 1, _config.JumpTime)).SetEase(Ease.Linear)
+            .Join(_ingredientTransform
                     .DOLocalRotate(new Vector3(0, 0, 360 * _config.JumpFlips), _config.JumpTime, RotateMode.FastBeyond360)
                     .SetEase(Ease.Linear));
 
