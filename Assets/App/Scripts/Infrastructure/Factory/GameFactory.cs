@@ -2,6 +2,7 @@
 using App.Scripts.Scenes.Features.Ingredient;
 using App.Scripts.Scenes.Features.Level;
 using App.Scripts.Scenes.Features.PizzaData;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Infrastructure.Factory
@@ -20,9 +21,11 @@ namespace App.Scripts.Infrastructure.Factory
 
     public Pizza CreatePizza(Pizza prefab, Transform parent)
     {
-      Pizza pizza = Object.Instantiate(prefab, parent);
+      Pizza pizza = Object.Instantiate(prefab, parent);  
       pizza.UpdateOverlaps(_physics);
       _levelModel.SetPizza(pizza);
+
+      pizza.Animator.Show();
       
       return pizza;
     }
@@ -34,9 +37,15 @@ namespace App.Scripts.Infrastructure.Factory
       Pizza pizzaToDestroy = _levelModel.Pizza;
       _levelModel.SetPizza(null);
 
-      pizzaToDestroy.HideAndDestroy();
+      HideAndDestroy(pizzaToDestroy).Forget();
     }
     
+    private async UniTask HideAndDestroy(Pizza pizza)
+    {
+       await pizza.Animator.Hide();
+       Object.Destroy(pizza);
+    }
+
     public void RemoveIngredient(Ingredient ingredient)
     {
       var pizza = ingredient.Pizza;

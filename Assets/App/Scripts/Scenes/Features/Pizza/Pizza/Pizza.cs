@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using App.Scripts.Libs.Physic;
 using ModestTree;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+
 
 namespace App.Scripts.Scenes.Features.PizzaData
 {
   public class Pizza : MonoBehaviour
   {
-    [SerializeField] private PizzaAnimator _animator;
+    [field: SerializeField] public PizzaAnimator Animator { get; private set; }
 
     private List<Ingredient.Ingredient> _ingredients = new List<Ingredient.Ingredient>();
     
@@ -26,8 +28,6 @@ namespace App.Scripts.Scenes.Features.PizzaData
       {
         ingredient.SetPizza(this);
       }
-
-      _animator.Show();
     }
 
     public void UpdateOverlaps(IPhysicsService physics)
@@ -39,11 +39,6 @@ namespace App.Scripts.Scenes.Features.PizzaData
     public void RemoveIngredient(Ingredient.Ingredient ingredient)
     {
       _ingredients.Remove(ingredient);
-    }
-
-    public void HideAndDestroy()
-    {
-       _animator.Hide();
     }
   }
 }

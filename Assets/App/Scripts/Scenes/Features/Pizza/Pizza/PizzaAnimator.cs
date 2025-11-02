@@ -2,6 +2,7 @@ using System;
 using App.Scripts.Infrastructure.Animator;
 using UnityEngine;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 public class PizzaAnimator : BaseAnimatorTween
 {
@@ -22,16 +23,15 @@ public class PizzaAnimator : BaseAnimatorTween
         PlaySequence(seq);
     }
 
-    public void Hide()
+    public async UniTask Hide()
     {
         CancelAnimation();
 
         var seq = DOTween.Sequence();
         seq.Append(_pizzaTransform.DOScale(0f, _config.HideTime)
-            .SetEase(_config.HideEase))
-            .OnComplete(() => Destroy(_pizzaTransform.gameObject));
+            .SetEase(_config.HideEase));
 
-        PlaySequence(seq);
+        await PlaySequenceAsync(seq);
     }
     
     [Serializable]
