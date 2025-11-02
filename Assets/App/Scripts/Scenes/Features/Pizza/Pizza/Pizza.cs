@@ -8,6 +8,8 @@ namespace App.Scripts.Scenes.Features.PizzaData
 {
   public class Pizza : MonoBehaviour
   {
+    [SerializeField] private PizzaAnimator _animator;
+
     private List<Ingredient.Ingredient> _ingredients = new List<Ingredient.Ingredient>();
     
     public IReadOnlyList<Ingredient.Ingredient> Ingredients => _ingredients;
@@ -24,6 +26,8 @@ namespace App.Scripts.Scenes.Features.PizzaData
       {
         ingredient.SetPizza(this);
       }
+
+      _animator.Show();
     }
 
     public void UpdateOverlaps(IPhysicsService physics)
@@ -35,6 +39,11 @@ namespace App.Scripts.Scenes.Features.PizzaData
     public void RemoveIngredient(Ingredient.Ingredient ingredient)
     {
       _ingredients.Remove(ingredient);
+    }
+
+    public void HideAndDestroy()
+    {
+       _animator.Hide();
     }
   }
 }

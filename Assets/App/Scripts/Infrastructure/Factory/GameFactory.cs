@@ -30,9 +30,11 @@ namespace App.Scripts.Infrastructure.Factory
     public void RemovePizza()
     {
       if (!_levelModel.Pizza) return;
-      
-      Object.Destroy(_levelModel.Pizza.gameObject);
+
+      Pizza pizzaToDestroy = _levelModel.Pizza;
       _levelModel.SetPizza(null);
+
+      pizzaToDestroy.HideAndDestroy();
     }
     
     public void RemoveIngredient(Ingredient ingredient)
