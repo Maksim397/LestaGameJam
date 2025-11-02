@@ -38,24 +38,30 @@ public class InGameWindow : MonoBehaviour
     
     public void Show()
     {
+        _animator.Show();
         gameObject.SetActive(true);
-        _pauseButton.gameObject.SetActive(true);
+        
     } 
 
-    public void Hide() => gameObject.SetActive(false);
+    public void Hide() { 
+        _animator.Hide();
+        gameObject.SetActive(false);
+    }
 
     void Start()
     {
         _pauseButton.onClick.AddListener(OnPause);
         _pauseButton.gameObject.SetActive(true);
+        Show();
     }
 
     private void OnDestroy() => _pauseButton.onClick.RemoveListener(OnPause);
 
     private void OnPause()
     {
+        _animator.HideButton();
         _uiMediator.ShowPauseWindow();
-        _pauseButton.gameObject.SetActive(false);
+        
     }
     private IEnumerator CountdownCoroutine(TimeSpan timeSpan)
     {

@@ -21,7 +21,7 @@ public class WinWindow : MonoBehaviour
     [SerializeField] private ScrollRect _scrollRect;
     
     private GameStateMachine _gameStateMachine;
-    
+    private LeaderboardRecord _pendingScrollRecord;
     
     [Inject]
     private void Construct(GameStateMachine gameStateMachine) => _gameStateMachine = gameStateMachine;
@@ -77,9 +77,12 @@ public class WinWindow : MonoBehaviour
             record.Setup(i + 1, record._playerName, TimeSpan.FromSeconds(record._timeFloat));
             record.transform.SetSiblingIndex(i);
         }
+
+        _pendingScrollRecord = playerRecord;
+
     }
    
-
+    
     
   
 }
