@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.Libs.LoadingScreen;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Infrastructure.UIMediator
@@ -34,7 +35,7 @@ namespace App.Scripts.Infrastructure.UIMediator
         public void ShowInGameWindow() => _inGameWindow.Show();
         public void HideInGameWindow() => _inGameWindow.Hide();
 
-        public void ShowSetNameWindow() => _setNameWindow.Show();
+        public UniTask<string> ShowSetNameWindow() => _setNameWindow.Show();
         public void HideSetNameWindow() => _setNameWindow.Hide();
 
 
