@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8656498748423667624}
   - component: {fileID: 1032276053273737748}
   - component: {fileID: 3337080014387074493}
+  - component: {fileID: 5832980196963426532}
+  - component: {fileID: 2549260737092093556}
   m_Layer: 0
   m_Name: PizzaBase
   m_TagString: Untagged
@@ -66,6 +68,39 @@ MonoBehaviour:
     FallTime: 0.8
     HideEase: 26
     HideTime: 0.4
+--- !u!65 &5832980196963426532
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868385647354305613}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.54970086, z: 1}
+  m_Center: {x: 0, y: -0.22514959, z: 0}
+--- !u!114 &2549260737092093556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868385647354305613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b04bf65ec772c145bf55ce9869acb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8352790531299950761
 GameObject:
   m_ObjectHideFlags: 0
