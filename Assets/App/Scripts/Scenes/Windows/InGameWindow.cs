@@ -47,8 +47,8 @@ public class InGameWindow : MonoBehaviour
             UpdateTimerDisplay(remainingTime);
 
             yield return new WaitForSeconds(1f);
-
             remainingTime -= TimeSpan.FromSeconds(1f);
+            _timerTime = remainingTime;
         }
 
         UpdateTimerDisplay(TimeSpan.FromSeconds(0f));
@@ -58,6 +58,20 @@ public class InGameWindow : MonoBehaviour
     private void OnTimerEnded()
     {
         
+    }
+
+    public void AddTime(TimeSpan time)
+    {
+        StopTimer();
+        _timerTime += time;
+        StartTimer(_timerTime);
+    }
+
+    public void RemoveTime(TimeSpan time)
+    {
+        StopTimer();
+        _timerTime -= time;
+        StartTimer(_timerTime);
     }
 
     private void UpdateTimerDisplay(TimeSpan remainingTime) => _timer.text = remainingTime.ToString(@"mm\:ss");
