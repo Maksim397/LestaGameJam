@@ -46,14 +46,13 @@ namespace App.Scripts.Infrastructure.Factory
        Object.Destroy(pizza);
     }
 
-    public void RemoveIngredient(Ingredient ingredient)
+    public void RemoveIngredient(Ingredient ingredient, Vector3 to)
     {
       var pizza = ingredient.Pizza;
       pizza?.RemoveIngredient(ingredient);
       pizza?.UpdateOverlaps(_physics);
 
-      ingredient.FallAndDestroy().Forget();
-      
+      ingredient.Animator.FallTarget(to).Forget();
     }
   }
 }

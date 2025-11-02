@@ -28,11 +28,5 @@ namespace App.Scripts.Scenes.Features.Ingredient
             _overlapChecker.TryGetOverlappedIngredients(physics, out IEnumerable<Ingredient> overlapIngredients);
             IsOverlap = overlapIngredients.Any();
         }
-
-        public async UniTask FallAndDestroy()
-        {
-            await Animator.Fall();
-            Destroy(gameObject);
-        }
     }
 }
