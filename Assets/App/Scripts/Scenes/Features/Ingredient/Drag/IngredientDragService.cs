@@ -64,15 +64,21 @@ public class IngredientDragService : ITickable
 
     private void Drag()
     {
-        Vector3 nextPosition = GetMouseOnPlanePos() + new Vector3(0, _UPoffset, 0);
+        Vector3 nextPosition = GetMouseOnPlanePos();
 
         Bounds tableBounds = _table.Collider.bounds;
 
+        if (nextPosition.y == -10) 
+        {
+            nextPosition.x = _draggedObject.transform.position.x;
+            nextPosition.z = _draggedObject.transform.position.z;
+        }
         nextPosition.x = Mathf.Clamp(nextPosition.x, tableBounds.min.x, tableBounds.max.x);
+        nextPosition.y = _lockedYpos + _UPoffset;
         nextPosition.z = Mathf.Clamp(nextPosition.z, tableBounds.min.z, tableBounds.max.z);
 
         float multiplyer = Math.Abs(Vector3.Distance(_draggedObject.Root.position, nextPosition) * 1.3f);
-        Debug.Log(multiplyer);
+        //Debug.Log("NextPos: " + nextPosition.x + " " + nextPosition.z + " - " + multiplyer);
         if (multiplyer > 0.02f) 
             _draggedObject.Root.position = _draggedObject.Root.position + (nextPosition - _draggedObject.Root.position) * multiplyer;
     }
@@ -104,10 +110,19 @@ public class IngredientDragService : ITickable
 
     private Vector3 GetMouseOnPlanePos()
     {
-        Plane plane = new Plane(Vector3.up, new Vector3(0, _lockedYpos, 0));
+        /*Plane plane = new Plane(Vector3.up, new Vector3(0, _lockedYpos, 0));
         Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
 
-        if (plane.Raycast(ray, out float dist)) return ray.GetPoint(dist);
-        return new Vector3(0, 0, 0);
+
+        if (plane.Raycast(ray, out float dist) && dist < 100f) 
+            return ray.GetPoint(dist);
+        return new Vector3(0, 0, 0); // Change this*/
+        Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
+
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 500f, CollisionLayer.MouseCanGo.AsMask()))
+            return hit.point;
+        Debug.Log("Не попал");
+        return new Vector3(0, -10, 0);
     }
 }

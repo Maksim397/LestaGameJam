@@ -36,7 +36,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 1|App.Scripts.Scenes.Features.Level.LevelData, Assembly-CSharp
@@ -140,6 +140,18 @@ MonoBehaviour:
     - Name: LevelTimeSeconds
       Entry: 4
       Data: 300
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|App.Scripts.Scenes.Features.Level.LevelData, Assembly-CSharp
+    - Name: Pizzas
+      Entry: 6
+      Data: 
+    - Name: LevelTimeSeconds
+      Entry: 4
+      Data: 0
     - Name: 
       Entry: 8
       Data: 

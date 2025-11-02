@@ -1,6 +1,7 @@
 public enum CollisionLayer
 {
-    PickableIngredient = 6
+    PickableIngredient = 6,
+    MouseCanGo = 7
 }
 
 public static class CollisionExtensions
