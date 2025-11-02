@@ -35,6 +35,10 @@ namespace App.Scripts.Infrastructure.UIMediator
             OnTimeEnd?.Invoke();
         }
 
+        public TimeSpan GetTime()
+        {
+            return _inGameWindow.GetTime();
+        }
 
         public void ShowLoadingScreen() => _loadingScreen.Show();
         public void HideLoadingScreen() => _loadingScreen.Hide();
