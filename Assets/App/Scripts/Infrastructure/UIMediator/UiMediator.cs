@@ -29,13 +29,13 @@ namespace App.Scripts.Infrastructure.UIMediator
         public void ShowGameOverWindow() => _gameOverWindow.Show();
         public void HideGameOverWindow() => _gameOverWindow.Hide();
 
-        public void ShowStartWindow() => _startWindow.Show();
+        public UniTask StartWindow() => _startWindow.Show();
         public void HideStartWindow() => _startWindow.Hide();
 
         public void ShowInGameWindow() => _inGameWindow.Show();
         public void HideInGameWindow() => _inGameWindow.Hide();
 
-        public UniTask<string> ShowSetNameWindow() => _setNameWindow.Show();
+        public UniTask<string> SetName() => _setNameWindow.Show();
         public void HideSetNameWindow() => _setNameWindow.Hide();
 
 

@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using App.Scripts.Infrastructure.UIMediator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,10 @@ public class InGameWindow : MonoBehaviour
 {
     [SerializeField] public Button _pauseButton;
     [SerializeField] public TMP_Text _timer;
+    [SerializeField] private UiMediator _uiMediator;
 
+    
+    
     private TimeSpan _timerTime;
     private Coroutine countdownCoroutine;
 
@@ -36,7 +40,7 @@ public class InGameWindow : MonoBehaviour
 
     private void OnPause()
     {
-        
+        _uiMediator.ShowPauseWindow();
     }
     private IEnumerator CountdownCoroutine(TimeSpan timeSpan)
     {

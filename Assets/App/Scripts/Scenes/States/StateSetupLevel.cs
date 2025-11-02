@@ -26,9 +26,13 @@ namespace App.Scripts.Scenes.States
 
       if (_persistentProgress.Progress.PlayerName == null)
       { 
-        _persistentProgress.Progress.PlayerName = await _uiMediator.ShowSetNameWindow();
+        _persistentProgress.Progress.PlayerName = await _uiMediator.SetName();
         _saveLoadService.SaveProgress();
       }
+      
+      await _uiMediator.StartWindow();
+      
+      _uiMediator.ShowInGameWindow();
 
       StateMachine.ChangeState<StateProcessGame>();
     }

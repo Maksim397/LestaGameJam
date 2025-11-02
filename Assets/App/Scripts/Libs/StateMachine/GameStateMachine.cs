@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Zenject;
 
 namespace App.Scripts.Libs.StateMachine
 {
-  public class GameStateMachine
+  public class GameStateMachine : ITickable
   {
     private readonly Dictionary<Type, GameState> _states = new Dictionary<Type, GameState>();
     private GameState _currentState;
