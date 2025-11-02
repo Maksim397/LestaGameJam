@@ -2,6 +2,7 @@ using App.Scripts.Infrastructure.Camera;
 using UnityEngine;
 using Zenject;
 using Cysharp.Threading.Tasks;
+using System;
 
 public class IngredientDragService : ITickable
 {
@@ -70,7 +71,10 @@ public class IngredientDragService : ITickable
         nextPosition.x = Mathf.Clamp(nextPosition.x, tableBounds.min.x, tableBounds.max.x);
         nextPosition.z = Mathf.Clamp(nextPosition.z, tableBounds.min.z, tableBounds.max.z);
 
-        _draggedObject.Root.position = nextPosition;
+        float multiplyer = Math.Abs(Vector3.Distance(_draggedObject.Root.position, nextPosition) * 1.3f);
+        Debug.Log(multiplyer);
+        if (multiplyer > 0.02f) 
+            _draggedObject.Root.position = _draggedObject.Root.position + (nextPosition - _draggedObject.Root.position) * multiplyer;
     }
 
     private async UniTask StopDragging()
@@ -86,8 +90,7 @@ public class IngredientDragService : ITickable
                 if (!(hit.collider.TryGetComponent<Holder>(out var holder) 
                     && _interactor.TryInteract(physicObject.Ingredient, holder)))
                 {
-                    await physicObject.Ingredient.Animator.ComebackTo(_firstPickPlace);
-                    Debug.Log("JUMP");
+                    await physicObject.Ingredient.Animator.FallTarget(_firstPickPlace);
                 }
             }
             else

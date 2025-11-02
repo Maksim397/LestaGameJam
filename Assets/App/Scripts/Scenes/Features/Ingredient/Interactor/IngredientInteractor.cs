@@ -32,7 +32,8 @@ public class IngredientInteractor : IIngredientInteractor
             {
                 _uiMediator.RemoveTime(System.TimeSpan.FromSeconds(_secondsToRemove));
             }
-            _gameFactory.RemoveIngredient(ingredient);
+            _gameFactory.RemoveIngredient(ingredient, holder.transform.position);
+
             return true;
         }
         else if (holder is Bowl bowl)
@@ -44,7 +45,7 @@ public class IngredientInteractor : IIngredientInteractor
                     _levelModel.SetLevelResult(LevelResult.Loose);
                     _gameStateMachine.ChangeState<StateGameEnd>();
                 }
-                _gameFactory.RemoveIngredient(ingredient);
+                _gameFactory.RemoveIngredient(ingredient, holder.transform.position);
                 return true;
             }
             else
