@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using App.Scripts.Infrastructure.UIMediator;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,34 +14,44 @@ public class InGameWindow : MonoBehaviour
     [SerializeField] private UiMediator _uiMediator;
 
     
-    
     private TimeSpan _timerTime;
-    private Coroutine countdownCoroutine;
+    private Coroutine _countdownCoroutine;
 
     public void StartTimer(TimeSpan startTime)
     {
         _timerTime = startTime;
-        countdownCoroutine = StartCoroutine(CountdownCoroutine(startTime));
+        _countdownCoroutine = StartCoroutine(CountdownCoroutine(startTime));
     }
+    
+    
     public void StopTimer()
     {
-        if (countdownCoroutine != null)
+        if (_countdownCoroutine != null)
         {
-            StopCoroutine(countdownCoroutine);
-            countdownCoroutine = null;
+            StopCoroutine(_countdownCoroutine);
+            _countdownCoroutine = null;
         }
     }
-    public void Show() => gameObject.SetActive(true);
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        _pauseButton.gameObject.SetActive(true);
+    } 
 
     public void Hide() => gameObject.SetActive(false);
 
-    void Start() => _pauseButton.onClick.AddListener(OnPause);
+    void Start()
+    {
+        _pauseButton.onClick.AddListener(OnPause);
+        _pauseButton.gameObject.SetActive(true);
+    }
 
     private void OnDestroy() => _pauseButton.onClick.RemoveListener(OnPause);
 
     private void OnPause()
     {
         _uiMediator.ShowPauseWindow();
+        _pauseButton.gameObject.SetActive(false);
     }
     private IEnumerator CountdownCoroutine(TimeSpan timeSpan)
     {
@@ -64,6 +75,12 @@ public class InGameWindow : MonoBehaviour
         
     }
 
+    public void ResetTime()
+    {
+        StopTimer();
+        _timerTime = TimeSpan.FromSeconds(0f);
+        UpdateTimerDisplay(TimeSpan.FromSeconds(0f));
+    }
     public void AddTime(TimeSpan time)
     {
         StopTimer();
@@ -77,6 +94,5 @@ public class InGameWindow : MonoBehaviour
         _timerTime -= time;
         StartTimer(_timerTime);
     }
-
     private void UpdateTimerDisplay(TimeSpan remainingTime) => _timer.text = remainingTime.ToString(@"mm\:ss");
 }

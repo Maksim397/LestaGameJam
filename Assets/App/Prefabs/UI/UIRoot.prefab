@@ -2126,7 +2126,7 @@ MonoBehaviour:
   _resumeButton: {fileID: 119812209791178142}
   _restartButton: {fileID: 1960273967521749062}
   _quitButton: {fileID: 7868864614642912363}
-  _uiMediator: {fileID: 0}
+  _uiMediator: {fileID: 1568157512300330151}
 --- !u!114 &5825987543183440558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5212,7 +5212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseButton: {fileID: 7665443562604210687}
   _timer: {fileID: 1367574693651371673}
-  _uiMediator: {fileID: 0}
+  _uiMediator: {fileID: 1568157512300330151}
 --- !u!1001 &240090361907228641
 PrefabInstance:
   m_ObjectHideFlags: 0

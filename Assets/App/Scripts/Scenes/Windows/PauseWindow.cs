@@ -1,3 +1,4 @@
+using System.Timers;
 using App.Scripts.Infrastructure.UIMediator;
 using App.Scripts.Libs.StateMachine;
 using App.Scripts.Scenes.States;
@@ -25,11 +26,13 @@ public class PauseWindow : MonoBehaviour
   public void Show()
   {
     gameObject.SetActive(true);
+    Time.timeScale = 0;
   } 
   
   public void Hide()
   {
     gameObject.SetActive(false);
+    Time.timeScale = 1;
   }
 
   private void Start()
@@ -48,12 +51,15 @@ public class PauseWindow : MonoBehaviour
   
   private void OnResume()
   {
-    
+    _uiMediator.HidePauseWindow();
+    _uiMediator.ShowInGameWindow();
   }
   
   
   private void OnRestart()
   {
+    Hide();
+    _uiMediator.HideInGameWindow();
     _gameStateMachine.ChangeState<StateSetupLevel>();
   }
   
