@@ -45,14 +45,24 @@ public class StartWindow : MonoBehaviour
         _startButton.onClick.RemoveListener(OnStart);
         _quitButton.onClick.RemoveListener(OnQuit);
     }
+    
+    private void TrySetResult()
+    {
+        _completionSource.TrySetResult();
+        Hide();
+    }
 
     private void OnStart()
     {
-        
+        TrySetResult();
     }
   
     private void OnQuit()
-    {
-        
+    { 
+        Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

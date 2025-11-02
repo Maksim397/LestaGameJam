@@ -1,14 +1,17 @@
-using App.Scripts.Infrastructure.EntryPoint;
-using App.Scripts.Scenes.States;
+using App.Scripts.Infrastructure.ProjectSetup;
+using App.Scripts.Infrastructure.ProjectSetup.ProjectSettings.Config;
+using UnityEngine;
 using Zenject;
 
 namespace App.Scripts.Scenes.Installers
 {
   public class InstallerGameEntryPoint : MonoInstaller
   {
+    [SerializeField] private ConfigProjectSettings _configProjectSettings;
+    
     public override void InstallBindings()
     {
-      Container.BindInterfacesAndSelfTo<EntryPointStarter<StateSetupLevel>>().AsSingle();
+      Container.BindInterfacesAndSelfTo<ProjectSetuper>().AsSingle().WithArguments(_configProjectSettings);
     }
   }
 }

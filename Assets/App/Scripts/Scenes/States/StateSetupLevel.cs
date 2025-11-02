@@ -31,6 +31,8 @@ namespace App.Scripts.Scenes.States
       }
       
       await _uiMediator.StartWindow();
+      
+      _uiMediator.ShowInGameWindow();
 
       StateMachine.ChangeState<StateProcessGame>();
     }
