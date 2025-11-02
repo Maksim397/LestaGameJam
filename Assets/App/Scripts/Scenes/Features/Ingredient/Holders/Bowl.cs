@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Bowl : Holder
 {
-    
+    [field: SerializeField] public IngredientType Type { get; private set; }
 }

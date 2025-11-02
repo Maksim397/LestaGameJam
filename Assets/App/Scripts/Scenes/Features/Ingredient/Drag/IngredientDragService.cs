@@ -81,12 +81,9 @@ public class IngredientDragService : ITickable
         Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (hit.collider.TryGetComponent<Holder>(out var holder)
-                && _draggedObject.gameObject.TryGetComponent<IngredientPhysicObject>(out var physicObject))
-            {
-                _interactor.Interact(physicObject.Ingredient, holder);
-            }
-            else
+            if (!(hit.collider.TryGetComponent<Holder>(out var holder)
+                && _draggedObject.gameObject.TryGetComponent<IngredientPhysicObject>(out var physicObject)
+                && _interactor.TryInteract(physicObject.Ingredient, holder)))
             {
                 _draggedObject.Root.position = _firstPickPlace;
                 _draggedObject.SetPhysicActive(true);
