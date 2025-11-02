@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.Infrastructure.UIMediator;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class WinWindow : MonoBehaviour
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Transform _contentParent; 
     [SerializeField] private GameObject _recordPrefab;
-    
+
     
     [SerializeField]private List<LeaderboardRecord> _records;
     
@@ -28,10 +29,6 @@ public class WinWindow : MonoBehaviour
         
     }
   
-    private void OnRestart()
-    {
-        
-    }
     public void SetPlayer(string name, TimeSpan time)
     {
         LeaderboardRecord record = _records.Find(r => r._playerName == name);

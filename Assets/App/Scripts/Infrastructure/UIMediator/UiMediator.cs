@@ -29,7 +29,7 @@ namespace App.Scripts.Infrastructure.UIMediator
         public void ShowGameOverWindow() => _gameOverWindow.Show();
         public void HideGameOverWindow() => _gameOverWindow.Hide();
 
-        public void StartWindow() => _startWindow.Show();
+        public UniTask StartWindow() => _startWindow.Show();
         public void HideStartWindow() => _startWindow.Hide();
 
         public void ShowInGameWindow() => _inGameWindow.Show();

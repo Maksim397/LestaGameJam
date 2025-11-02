@@ -1,10 +1,18 @@
+using App.Scripts.Libs.StateMachine;
+using App.Scripts.Scenes.States;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class GameOverWindow : MonoBehaviour
 {
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
+
+    private GameStateMachine _gameStateMachine;
+    
+    [Inject]
+    private void Construct(GameStateMachine gameStateMachine) => _gameStateMachine = gameStateMachine;
 
     public void Show()
     {
@@ -32,7 +40,7 @@ public class GameOverWindow : MonoBehaviour
   
     private void OnRestart()
     {
-    
+        _gameStateMachine.ChangeState<StateSetupLevel>();
     }
   
     private void OnMainMenu()
