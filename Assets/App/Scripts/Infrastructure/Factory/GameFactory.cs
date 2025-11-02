@@ -51,8 +51,8 @@ namespace App.Scripts.Infrastructure.Factory
       var pizza = ingredient.Pizza;
       pizza?.RemoveIngredient(ingredient);
       pizza?.UpdateOverlaps(_physics);
-      
-      Object.Destroy(ingredient.gameObject);
+
+      ingredient.FallAndDestroy().Forget();
       
     }
   }

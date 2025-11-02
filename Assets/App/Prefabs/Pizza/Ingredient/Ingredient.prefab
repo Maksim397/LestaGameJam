@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8301566609258109206}
   - component: {fileID: 2603735512145240741}
+  - component: {fileID: 1030839541181908813}
   m_Layer: 0
   m_Name: Ingredient
   m_TagString: Untagged
@@ -50,6 +51,24 @@ MonoBehaviour:
   _overlapChecker: {fileID: 7859456276384092960}
   <Type>k__BackingField: 0
   <State>k__BackingField: 0
+  <Animator>k__BackingField: {fileID: 1030839541181908813}
+--- !u!114 &1030839541181908813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365554234502652361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d451651bbc40c44dab16133866d17ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ingredientTransform: {fileID: 8301566609258109206}
+  _config:
+    JumpStrenght: 0.3
+    JumpTime: 0.5
+    JumpFlips: 2
 --- !u!1 &5579010679806960684
 GameObject:
   m_ObjectHideFlags: 0
