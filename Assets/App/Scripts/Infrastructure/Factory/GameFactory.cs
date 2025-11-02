@@ -29,6 +29,8 @@ namespace App.Scripts.Infrastructure.Factory
 
     public void RemovePizza()
     {
+      if (!_levelModel.Pizza) return;
+      
       Object.Destroy(_levelModel.Pizza.gameObject);
       _levelModel.SetPizza(null);
     }

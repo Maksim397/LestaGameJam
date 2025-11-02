@@ -54,6 +54,11 @@ namespace App.Scripts.Scenes.States
         SpawnPizzaWithDelay(1000).Forget();
       }
     }
+    
+    public override void OnExitState()
+    {
+      RemovePizza();
+    }
 
     private async UniTaskVoid SpawnPizzaWithDelay(int spawnDelay)
     {
