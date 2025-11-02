@@ -29,6 +29,7 @@ public class WinWindow : MonoBehaviour
     public void Show()
     {
         _animator.Show();
+        _uiMediator.HideInGameWindow();
         gameObject.SetActive(true);
     } 
     public void Hide()
@@ -40,7 +41,7 @@ public class WinWindow : MonoBehaviour
     private void Start()
     {
         _mainMenuButton.onClick.AddListener(OnMainMenu);
-        _uiMediator.HideInGameWindow();
+        
     }
 
     private void OnDestroy() => _mainMenuButton.onClick.RemoveListener(OnMainMenu);

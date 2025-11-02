@@ -35,6 +35,7 @@ public class InGameWindow : MonoBehaviour
             _countdownCoroutine = null;
         }
     }
+    
     public void Show()
     {
         gameObject.SetActive(true);
