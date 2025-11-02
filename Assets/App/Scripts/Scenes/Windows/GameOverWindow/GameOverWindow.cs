@@ -53,7 +53,7 @@ public class GameOverWindow : MonoBehaviour
   
     private void OnMainMenu()
     {
-    
+        
     }
     
 }

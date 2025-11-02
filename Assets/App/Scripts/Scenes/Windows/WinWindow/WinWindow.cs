@@ -1,8 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.Infrastructure.UIMediator;
+using App.Scripts.Libs.StateMachine;
+using App.Scripts.Scenes.States;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class WinWindow : MonoBehaviour
 {
@@ -14,7 +18,13 @@ public class WinWindow : MonoBehaviour
     
     [SerializeField]private List<LeaderboardRecord> _records;
     [SerializeField] private WinWindowAnimator _animator;
+    [SerializeField] private ScrollRect _scrollRect;
     
+    private GameStateMachine _gameStateMachine;
+    
+    
+    [Inject]
+    private void Construct(GameStateMachine gameStateMachine) => _gameStateMachine = gameStateMachine;
     
     public void Show()
     {
@@ -37,36 +47,38 @@ public class WinWindow : MonoBehaviour
 
     private void OnMainMenu()
     {
-        
+        Hide();
+        _gameStateMachine.ChangeState<StateSetupLevel>();
     }
   
     public void SetPlayer(string name, TimeSpan time)
     {
-        LeaderboardRecord record = _records.Find(r => r._playerName == name);
-        if (record != null)
+        LeaderboardRecord playerRecord = _records.Find(r => r._playerName == name);
+        if (playerRecord != null)
         {
-            record._timeFloat = (float)time.TotalSeconds;
-            record.Time = time;
+            playerRecord._timeFloat = (float)time.TotalSeconds;
+            playerRecord.Time = time;
         }
         else
         {
             GameObject go = Instantiate(_recordPrefab, _contentParent);
-            record = go.GetComponent<LeaderboardRecord>();
-            record._playerName = name;
-            record._timeFloat = (float)time.TotalSeconds;
-            record.Time = time;
-            _records.Add(record);
+            playerRecord = go.GetComponent<LeaderboardRecord>();
+            playerRecord._playerName = name;
+            playerRecord._timeFloat = (float)time.TotalSeconds;
+            playerRecord.Time = time;
+            _records.Add(playerRecord);
         }
         
         _records.Sort((a, b) => a._timeFloat.CompareTo(b._timeFloat));
         for (int i = 0; i < _records.Count; i++)
         {
-            record = _records[i];
+            LeaderboardRecord record = _records[i];
             record.Setup(i + 1, record._playerName, TimeSpan.FromSeconds(record._timeFloat));
             record.transform.SetSiblingIndex(i);
         }
     }
-    
+   
+
     
   
 }
