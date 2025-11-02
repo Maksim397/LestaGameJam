@@ -12,6 +12,7 @@ namespace App.Scripts.Infrastructure.UIMediator
         [SerializeField] private GameOverWindow _gameOverWindow;
         [SerializeField] private StartWindow _startWindow;
         [SerializeField] private InGameWindow _inGameWindow;
+        [SerializeField] private SetNameWindow _setNameWindow;
 
         private bool _isTimerRunning;
 
@@ -33,9 +34,17 @@ namespace App.Scripts.Infrastructure.UIMediator
         public void ShowInGameWindow() => _inGameWindow.Show();
         public void HideInGameWindow() => _inGameWindow.Hide();
 
+        public void ShowSetNameWindow() => _setNameWindow.Show();
+        public void HideSetNameWindow() => _setNameWindow.Hide();
+
 
         public void StartCountdown(TimeSpan startTime) => _inGameWindow.StartTimer(startTime);
-
         public void StopCountdown() => _inGameWindow.StopTimer();
+
+        
+
+        public void AddTime(TimeSpan time) => _inGameWindow.AddTime(time);
+
+        public void RemoveTime(TimeSpan time) => _inGameWindow.RemoveTime(time);
     }
 }
