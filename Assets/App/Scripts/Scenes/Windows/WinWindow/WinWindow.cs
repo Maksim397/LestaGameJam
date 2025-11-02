@@ -13,9 +13,19 @@ public class WinWindow : MonoBehaviour
     [SerializeField] private UiMediator _uiMediator;
     
     [SerializeField]private List<LeaderboardRecord> _records;
+    [SerializeField] private WinWindowAnimator _animator;
     
-    public void Show() => gameObject.SetActive(true);
-    public void Hide() => gameObject.SetActive(false);
+    
+    public void Show()
+    {
+        _animator.Show();
+        gameObject.SetActive(true);
+    } 
+    public void Hide()
+    {
+        _animator.Hide();
+        gameObject.SetActive(false);
+    }
 
     private void Start()
     {

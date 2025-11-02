@@ -12,7 +12,7 @@ public class PauseWindow : MonoBehaviour
   [SerializeField] private Button _restartButton;
   [SerializeField] private Button _quitButton;
   [SerializeField] private UiMediator _uiMediator;
-  
+  [SerializeField] private PauseWindowAnimator _animator;
   private GameStateMachine _gameStateMachine;
   
   

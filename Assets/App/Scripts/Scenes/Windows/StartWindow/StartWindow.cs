@@ -11,9 +11,11 @@ public class StartWindow : MonoBehaviour
 {
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _quitButton;
-
+    [SerializeField] private StartWindowAnimator _animator;
+    
     private GameStateMachine _gameStateMachine;
     private UniTaskCompletionSource _completionSource;
+    
     
     [Inject]
     private void Construct(GameStateMachine gameStateMachine)
@@ -24,6 +26,7 @@ public class StartWindow : MonoBehaviour
     
     public UniTask Show()
     {
+        _animator.Show();
         _completionSource = new UniTaskCompletionSource();
         gameObject.SetActive(true);
         
@@ -32,6 +35,7 @@ public class StartWindow : MonoBehaviour
 
     public void Hide()
     {
+        _animator.Hide();
         gameObject.SetActive(false);
     }
     private void Start()

@@ -7,18 +7,23 @@ public class SetNameWindow : MonoBehaviour
 {
     [SerializeField] private Button _acceptButton;
     [SerializeField] private TMP_InputField _inputField;
-    
+    [SerializeField] private SetNameWindowAnimator _animator;
     private UniTaskCompletionSource<string> _completionSource;
 
     public UniTask<string> Show()
     {
+        _animator.Show();
       _completionSource = new UniTaskCompletionSource<string>();
       gameObject.SetActive(true);
       
       return _completionSource.Task;
     }
-    
-    public void Hide() => gameObject.SetActive(false);
+
+    public void Hide()
+    {
+        _animator.Hide();
+        gameObject.SetActive(false);
+    }
 
     private void Start() => _acceptButton.onClick.AddListener(OnAcceptName);
 

@@ -3,7 +3,7 @@ using App.Scripts.Infrastructure.Animator;
 using DG.Tweening;
 using UnityEngine;
 
-public class StartWindowAnimator : BaseAnimatorTween
+public class SetNameWindowAnimator : BaseAnimatorTween
 {
     [SerializeField] private Transform _windowTransform;
   

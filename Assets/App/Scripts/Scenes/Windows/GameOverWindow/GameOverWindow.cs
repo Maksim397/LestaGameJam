@@ -10,6 +10,7 @@ public class GameOverWindow : MonoBehaviour
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private UiMediator _uiMediator;
+    [SerializeField] private GameOverWindowAnimator _animator;
     
     private GameStateMachine _gameStateMachine;
     
@@ -19,12 +20,14 @@ public class GameOverWindow : MonoBehaviour
 
     public void Show()
     {
+        _animator.Show();
         gameObject.SetActive(true);
         _uiMediator.HideInGameWindow();
     }
 
     public void Hide()
     {
+        _animator.Hide();
         gameObject.SetActive(false);
     }
     
