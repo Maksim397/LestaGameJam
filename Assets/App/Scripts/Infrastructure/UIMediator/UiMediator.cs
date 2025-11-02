@@ -34,8 +34,8 @@ namespace App.Scripts.Infrastructure.UIMediator
         {
             OnTimeEnd?.Invoke();
         }
-        
-        
+
+
         public void ShowLoadingScreen() => _loadingScreen.Show();
         public void HideLoadingScreen() => _loadingScreen.Hide();
 
@@ -61,7 +61,12 @@ namespace App.Scripts.Infrastructure.UIMediator
         public void StartCountdown(TimeSpan startTime) => _inGameWindow.StartTimer(startTime);
         public void StopCountdown() => _inGameWindow.StopTimer();
 
-        
+        public void SetPlayer(string playerName, TimeSpan time)
+        {
+            _winWindow.SetPlayer(playerName, time);
+        }
+    
+    
 
         public void AddTime(TimeSpan time) => _inGameWindow.AddTime(time);
         public void RemoveTime(TimeSpan time) => _inGameWindow.RemoveTime(time);
