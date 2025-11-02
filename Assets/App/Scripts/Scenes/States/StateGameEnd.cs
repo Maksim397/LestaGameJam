@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Scripts.Infrastructure.PersistentProgress;
 using App.Scripts.Infrastructure.UIMediator;
 using App.Scripts.Libs.StateMachine;
 using App.Scripts.Scenes.Features.Level;
@@ -10,16 +11,19 @@ namespace App.Scripts.Scenes.States
   {
     private readonly LevelModel _levelModel;
     private readonly UiMediator _uiMediator;
-    public StateGameEnd(LevelModel levelModel, UiMediator uiMediator)
+    private readonly IPersistentProgressService _progress;
+    public StateGameEnd(LevelModel levelModel, UiMediator uiMediator, IPersistentProgressService progress)
     {
       _levelModel = levelModel;
       _uiMediator = uiMediator;
+      _progress = progress;
     }
     
     public override void OnEnterState()
     {
       if (_levelModel.LevelResult == LevelResult.Win)
       {
+        _uiMediator.SetPlayer(_progress.Progress.PlayerName, _uiMediator.GetTime());
         _uiMediator.ShowWinWindow();
       }
       else if (_levelModel.LevelResult == LevelResult.Loose)

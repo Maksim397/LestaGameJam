@@ -31,22 +31,34 @@ namespace App.Scripts.Scenes.States
     {
       _uiMediator.HideLoadingScreen();
 
+      await SetupUserName();
+      await StartWindow();
+      SetupLevel();
+
+      StateMachine.ChangeState<StateProcessGame>();
+    }
+    
+    private async UniTask SetupUserName()
+    {
       if (_persistentProgress.Progress.PlayerName == null)
       { 
         _persistentProgress.Progress.PlayerName = await _uiMediator.SetName();
         _saveLoadService.SaveProgress();
       }
-      
-      await _uiMediator.StartWindow();
+    }
 
+    private void SetupLevel()
+    {
+      _levelModel.Reset();
+      
       var levelData = _staticData.Levels.Data[0];
       _levelModel.SetLevelData(levelData);
 
       _uiMediator.ShowInGameWindow();
       _uiMediator.ResetTime();
       _uiMediator.AddTime(TimeSpan.FromSeconds(levelData.LevelTimeSeconds));
-
-      StateMachine.ChangeState<StateProcessGame>();
     }
+    
+    private UniTask StartWindow() => _uiMediator.StartWindow();
   }
 }
