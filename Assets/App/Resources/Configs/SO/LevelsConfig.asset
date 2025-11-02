@@ -90,6 +90,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: levelTimeSeconds
+      Entry: 4
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
