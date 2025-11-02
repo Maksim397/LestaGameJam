@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 public class PizzaAnimator : BaseAnimatorTween
 {
     [SerializeField] private Transform _pizzaTransform;
+    [SerializeField] private Transform _pizzaViewTransform;
 
     [SerializeField] private Config _config;
 
@@ -28,7 +29,7 @@ public class PizzaAnimator : BaseAnimatorTween
         CancelAnimation();
 
         var seq = DOTween.Sequence();
-        seq.Append(_pizzaTransform.DOScale(0f, _config.HideTime)
+        seq.Append(_pizzaViewTransform.DOScale(0f, _config.HideTime)
             .SetEase(_config.HideEase));
 
         await PlaySequenceAsync(seq);
