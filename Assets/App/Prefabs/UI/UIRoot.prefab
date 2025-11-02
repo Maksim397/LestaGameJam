@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainMenuButton: {fileID: 8726108636069482079}
   _contentParent: {fileID: 4356871872947524256}
-  _recordPrefab: {fileID: 2817355788135717349, guid: c2e8b978ca230ee4eb1cc9d0a0aa89b8, type: 3}
+  _recordPrefab: {fileID: 8785499951061600716, guid: 0a543a87fea2c62488e674ba35223331, type: 3}
   _records:
   - {fileID: 5776167529598385310}
   - {fileID: 3052430363222506587}

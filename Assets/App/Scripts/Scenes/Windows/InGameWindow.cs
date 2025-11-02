@@ -17,6 +17,7 @@ public class InGameWindow : MonoBehaviour
     private TimeSpan _timerTime;
     private Coroutine _countdownCoroutine;
 
+    public event Action OnTimerEnd;
     public void StartTimer(TimeSpan startTime)
     {
         _timerTime = startTime;
@@ -72,7 +73,7 @@ public class InGameWindow : MonoBehaviour
 
     public void OnTimerEnded()
     {
-        
+        OnTimerEnd?.Invoke(); 
     }
 
     public void ResetTime()
