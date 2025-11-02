@@ -95,6 +95,8 @@ public class InGameWindow : MonoBehaviour
         StopTimer();
         _timerTime -= time;
         StartTimer(_timerTime);
+        
+        _animator.ScaleTime();
     }
     private void UpdateTimerDisplay(TimeSpan remainingTime) => _timer.text = remainingTime.ToString(@"mm\:ss");
 }
