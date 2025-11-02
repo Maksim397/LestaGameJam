@@ -1,8 +1,7 @@
 using App.Scripts.Infrastructure.Camera;
-using System;
 using UnityEngine;
 using Zenject;
-using App.Scripts.Libs;
+using Cysharp.Threading.Tasks;
 
 public class IngredientDragService : ITickable
 {
@@ -44,7 +43,7 @@ public class IngredientDragService : ITickable
 
         if (Input.GetMouseButtonUp(0) && _draggedObject != null)
         {
-            StopDragging();
+            StopDragging().Forget();
         }
     }
     
@@ -52,7 +51,7 @@ public class IngredientDragService : ITickable
     private void StartDragging(Transform objectToDrag)
     {
         _draggedObject = objectToDrag.GetComponent<IngredientPhysicObject>();
-        if (_draggedObject.Ingredient.IsOverlap) 
+        if (_draggedObject.Ingredient.IsOverlap || _draggedObject.Ingredient.Animator.IsAnimating) 
         { 
             _draggedObject = null; 
             return; 
@@ -75,22 +74,33 @@ public class IngredientDragService : ITickable
         _draggedObject.Root.position = nextPosition;
     }
 
-    private void StopDragging()
+    private async UniTask StopDragging()
     {
+        IngredientPhysicObject objectToStopDragging = _draggedObject;
+        _draggedObject = null;
 
         Ray ray = _cameraService.Camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (!(hit.collider.TryGetComponent<Holder>(out var holder)
-                && _draggedObject.gameObject.TryGetComponent<IngredientPhysicObject>(out var physicObject)
-                && _interactor.TryInteract(physicObject.Ingredient, holder)))
+            if (objectToStopDragging.gameObject.TryGetComponent<IngredientPhysicObject>(out var physicObject))
             {
-                _draggedObject.Root.position = _firstPickPlace;
-                _draggedObject.SetPhysicActive(true);
-            }
-        }
+                if (hit.collider.TryGetComponent<Holder>(out var holder) 
+                    && _interactor.TryInteract(physicObject.Ingredient, holder))
+                {
 
-        _draggedObject = null;
+                }
+                else
+                {
+                    await physicObject.Ingredient.Animator.ComebackTo(_firstPickPlace);
+                    Debug.Log("JUMP");
+                }
+            }
+            else
+            {
+                objectToStopDragging.Root.position = _firstPickPlace;
+            }
+            objectToStopDragging.SetPhysicActive(true);
+        }
     }
 
 

@@ -13,6 +13,7 @@ namespace App.Scripts.Scenes.Features.Ingredient
 
         [field: SerializeField] public IngredientType Type { get; private set; }
         [field: SerializeField] public IngredientState State { get; private set; }
+        [field: SerializeField] public IngredientAnimator Animator { get; private set; }
         public Pizza Pizza { get; private set; }
         public bool IsOverlap { get; private set; }
 
