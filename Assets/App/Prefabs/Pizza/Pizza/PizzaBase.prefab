@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52485b9586784dfca761d2509580446f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 3337080014387074493}
+  <Animator>k__BackingField: {fileID: 3337080014387074493}
 --- !u!114 &3337080014387074493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,10 +64,8 @@ MonoBehaviour:
     UpOffset: 1
     FallEase: 30
     FallTime: 0.8
-    ScaleTime: 0.8
-    ScaleEase: 27
-    HideTime: 0.4
     HideEase: 26
+    HideTime: 0.4
 --- !u!1 &8352790531299950761
 GameObject:
   m_ObjectHideFlags: 0
