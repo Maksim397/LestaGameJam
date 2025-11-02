@@ -35,8 +35,9 @@ public class StartWindow : MonoBehaviour
 
     public void Hide()
     {
-        _animator.Hide();
+        
         gameObject.SetActive(false);
+        _animator.Hide();
     }
     private void Start()
     {
