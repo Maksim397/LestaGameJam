@@ -25,12 +25,14 @@ public class PauseWindow : MonoBehaviour
   
   public void Show()
   {
+    _animator.Show();
     gameObject.SetActive(true);
     Time.timeScale = 0;
   } 
   
   public void Hide()
   {
+    _animator.Hide();
     gameObject.SetActive(false);
     Time.timeScale = 1;
   }

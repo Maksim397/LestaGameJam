@@ -8,32 +8,36 @@ public class PauseWindowAnimator : BaseAnimatorTween
     [SerializeField] private Transform _windowTransform;
   
     [SerializeField] private Config _config;
-  
+
     public void Show()
     {
         CancelAnimation();
         _windowTransform.localScale = Vector3.zero;
         _windowTransform.gameObject.SetActive(true);
-        
+
         var seq = DOTween.Sequence();
+        seq.SetUpdate(true);
         seq.Append(_windowTransform.DOScale(1f, _config.ScaleTime)
-            .SetEase(_config.ScaleEase));
+            .SetEase(_config.ScaleEase)
+            .SetUpdate(true));
         PlaySequence(seq);
     }
 
     public void Hide()
     {
         CancelAnimation();
-        _windowTransform.localScale = Vector3.zero;
+        _windowTransform.localScale = Vector3.one;
         _windowTransform.gameObject.SetActive(true);
-        
+
         var seq = DOTween.Sequence();
+        seq.SetUpdate(true);
         seq.Append(_windowTransform.DOScale(0f, _config.HideTime)
             .SetEase(_config.HideEase)
+            .SetUpdate(true)
             .OnComplete(() => _windowTransform.gameObject.SetActive(false)));
-        
         PlaySequence(seq);
     }
+
     [Serializable]
     public class Config
     {
