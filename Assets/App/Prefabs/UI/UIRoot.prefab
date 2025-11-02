@@ -5170,6 +5170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2826910777608235574}
   - component: {fileID: 5053309959265907755}
+  - component: {fileID: 6337448075935606068}
   m_Layer: 5
   m_Name: InGameMenu
   m_TagString: Untagged
@@ -5213,6 +5214,25 @@ MonoBehaviour:
   _pauseButton: {fileID: 7665443562604210687}
   _timer: {fileID: 1367574693651371673}
   _uiMediator: {fileID: 1568157512300330151}
+  _animator: {fileID: 6337448075935606068}
+--- !u!114 &6337448075935606068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121753970261107856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13a84352b13b8b41bb5bb2800255ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textTransform: {fileID: 3515299015881590862}
+  _config:
+    Punch: {x: 0.1, y: 0.1, z: 0.1}
+    PunchTime: 1
+    PunchVibrato: 10
+    PunchElasticity: 1
 --- !u!1001 &240090361907228641
 PrefabInstance:
   m_ObjectHideFlags: 0

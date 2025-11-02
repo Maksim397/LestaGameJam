@@ -9,27 +9,38 @@ namespace App.Scripts.Infrastructure.Animator
     protected Sequence _animation;
     public bool IsAnimating => _animation != null;
 
-    protected UniTask PlaySequenceAsync(Sequence seq)
+    protected UniTask PlaySequenceAsync(Sequence sequence)
     {
-      _animation = seq;
+      _animation = sequence;
 
       var tcs = new UniTaskCompletionSource();
 
-      void Clear() { _animation = null; }
 
-      seq.OnComplete(() => {
+      sequence.OnComplete(() => {
         Clear();
         tcs.TrySetResult();
       });
-      seq.OnKill(() => {
+      sequence.OnKill(() => {
         Clear();
         tcs.TrySetResult();
       });
 
-      seq.Play();
+      sequence.Play();
 
       return tcs.Task;
     }
+
+    protected void PlaySequence(Sequence sequence)
+    {
+      _animation = sequence;
+      
+      _animation.OnComplete(Clear);
+      _animation.OnKill(Clear);
+      
+      _animation.Play();
+    }
+    
+     private void Clear() { _animation = null; }
 
     public void CancelAnimation()
     {
