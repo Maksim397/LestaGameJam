@@ -9,7 +9,7 @@ namespace App.Scripts.Infrastructure.Factory
   public interface IGameFactory
   {
     Pizza CreatePizza(Pizza prefab, Transform parent);
-    void RemovePizza();
+    void RemovePizza(bool isLoose);
     void RemoveIngredient(Ingredient ingredient, Vector3 to);
   }
 }

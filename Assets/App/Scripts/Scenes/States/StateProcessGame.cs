@@ -41,7 +41,7 @@ namespace App.Scripts.Scenes.States
       {
         Debug.Log("Pizza is ready!"); 
 
-        RemovePizza();
+        RemovePizza(false);
         _levelModel.IncreaseCollectedPizzas();
 
         if (CollectedPizzas >= _levelModel.LevelData.Pizzas.Count)
@@ -57,7 +57,7 @@ namespace App.Scripts.Scenes.States
     
     public override void OnExitState()
     {
-      RemovePizza();
+      RemovePizza(true);
     }
 
     private async UniTaskVoid SpawnPizzaWithDelay(int spawnDelay)
@@ -71,6 +71,6 @@ namespace App.Scripts.Scenes.States
       PizzaVariantsByCollectedAmount(CollectedPizzas).PickRandom(),
       _pizzaContainer.transform);
 
-    private void RemovePizza() =>_gameFactory.RemovePizza();
+    private void RemovePizza(bool isLoose) =>_gameFactory.RemovePizza(isLoose);
   }
 }

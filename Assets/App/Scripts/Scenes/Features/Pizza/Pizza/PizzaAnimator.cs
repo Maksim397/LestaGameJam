@@ -34,7 +34,18 @@ public class PizzaAnimator : BaseAnimatorTween
 
         await PlaySequenceAsync(seq);
     }
-    
+
+    public async UniTask HideWithIngredients()
+    {
+        CancelAnimation();
+
+        var seq = DOTween.Sequence();
+        seq.Append(_pizzaTransform.DOScale(0f, _config.HideTime)
+            .SetEase(_config.HideEase));
+
+        await PlaySequenceAsync(seq);
+    }
+
     [Serializable]
     public class Config
     {

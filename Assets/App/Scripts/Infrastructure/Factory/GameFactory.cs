@@ -30,20 +30,21 @@ namespace App.Scripts.Infrastructure.Factory
       return pizza;
     }
 
-    public void RemovePizza()
+    public void RemovePizza(bool isLoose)
     {
       if (!_levelModel.Pizza) return;
 
       Pizza pizzaToDestroy = _levelModel.Pizza;
       _levelModel.SetPizza(null);
 
-      HideAndDestroy(pizzaToDestroy).Forget();
+      HideAndDestroy(pizzaToDestroy, isLoose).Forget();
     }
     
-    private async UniTask HideAndDestroy(Pizza pizza)
+    private async UniTask HideAndDestroy(Pizza pizza, bool isLoose)
     {
-       await pizza.Animator.Hide();
-       Object.Destroy(pizza);
+       if (!isLoose) await pizza.Animator.Hide();
+       else await pizza.Animator.HideWithIngredients();
+       Object.Destroy(pizza.gameObject);
     }
 
     public void RemoveIngredient(Ingredient ingredient, Vector3 to)
