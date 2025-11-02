@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3285763670642342283, guid: cf8454ea10abe624fa47f4551f75e17b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bc738c653c842f34cb8e33186088018e, type: 2}
     - target: {fileID: 4995749697614892725, guid: cf8454ea10abe624fa47f4551f75e17b, type: 3}
       propertyPath: m_Name
       value: PepperRotten
