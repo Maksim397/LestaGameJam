@@ -34,6 +34,8 @@ MonoBehaviour:
     - {fileID: 474673075176437602, guid: 9f443132eede88140853ea4a435680c8, type: 3}
     - {fileID: 474673075176437602, guid: a015cc518eb223b4da5315a1ff760423, type: 3}
     - {fileID: 474673075176437602, guid: e49f20bdf87884f4fb38b6e7170be8f8, type: 3}
+    - {fileID: 474673075176437602, guid: cb5cb483c7364b4428a7efc049f5a5a9, type: 3}
+    - {fileID: 474673075176437602, guid: 20e3151c20800904b880198b32bd2ea0, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -55,7 +57,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 7
     - Name: 
       Entry: 7
       Data: 3|App.Scripts.Scenes.Features.Level.PizzaVariants, Assembly-CSharp
@@ -215,6 +217,31 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 17
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 15|App.Scripts.Scenes.Features.Level.PizzaVariants, Assembly-CSharp
+    - Name: Variants
+      Entry: 7
+      Data: 16|System.Collections.Generic.List`1[[App.Scripts.Scenes.Features.PizzaData.Pizza,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 18
+    - Name: 
+      Entry: 10
+      Data: 19
     - Name: 
       Entry: 13
       Data: 

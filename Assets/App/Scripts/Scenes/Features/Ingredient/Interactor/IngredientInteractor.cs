@@ -66,5 +66,7 @@ public class IngredientInteractor : IIngredientInteractor
         _gameFactory.RemoveIngredient(ingredient);
         await ingredient.Animator.FallTarget(holder.transform.position);
         Object.Destroy(ingredient.gameObject);
+        holder.Animator.Punch();
+        holder.CreateParticles();
     }
 }
