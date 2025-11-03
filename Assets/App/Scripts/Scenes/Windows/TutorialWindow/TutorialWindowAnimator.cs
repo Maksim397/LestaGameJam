@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class TutorialWindowAnimator : BaseAnimatorTween
 {
     [SerializeField] private Transform _windowTransform;
-  
-    [SerializeField] private PauseWindowAnimator.Config _config;
     [SerializeField] private Text _text;
+    [SerializeField] private Config _config;
+
+    private string _cachedFullText;
     
     public void Show()
     {
@@ -17,13 +18,19 @@ public class TutorialWindowAnimator : BaseAnimatorTween
         _windowTransform.localScale = Vector3.zero;
         _windowTransform.gameObject.SetActive(true);
 
+        _cachedFullText = _text.text;
+        _text.text = string.Empty;
+
+        float typeDuration = Mathf.Max(0.01f, _cachedFullText.Length / _config.CharsPerSecond);
         var seq = DOTween.Sequence();
         seq.SetUpdate(true);
-        seq.Append(_windowTransform.DOScale(1f, _config.ScaleTime)
-            .SetEase(_config.ScaleEase)
-            ).Join(_text.DOText(_text.text, 10f)
-            .SetUpdate(true));
-        
+
+        seq.Append(_windowTransform
+                .DOScale(1f, _config.ScaleTime)
+                .SetEase(_config.ScaleEase)
+                .SetUpdate(true))
+           .Join(_text.DOText(_cachedFullText, typeDuration, _config.RichText).SetUpdate(true));
+
         PlaySequence(seq);
     }
 
@@ -50,5 +57,7 @@ public class TutorialWindowAnimator : BaseAnimatorTween
         public Ease ScaleEase = Ease.OutBack;
         public float HideTime = 0.4f;
         public Ease HideEase = Ease.InBack;
+        public float CharsPerSecond = 30f;
+        public bool RichText;
     }
 }
