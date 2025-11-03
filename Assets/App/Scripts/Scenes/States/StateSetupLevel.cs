@@ -32,23 +32,20 @@ namespace App.Scripts.Scenes.States
       _uiMediator.HideLoadingScreen();
 
       await StartWindow();
-      SetupLevel();
-
-      StateMachine.ChangeState<StateProcessGame>();
-    }
-    
-    private void SetupLevel()
-    {
       _levelModel.Reset();
       
       var levelData = _staticData.Levels.Data[0];
       _levelModel.SetLevelData(levelData);
 
       _uiMediator.ShowInGameWindow();
-      _uiMediator.ResetTime();
-      _uiMediator.AddTime(TimeSpan.FromSeconds(levelData.LevelTimeSeconds));
+      _uiMediator.StartCountdown(TimeSpan.FromSeconds(_levelModel.LevelData.LevelTimeSeconds));
+      _uiMediator.StopCountdown();
+      
+      await _uiMediator.ShowTutorialWindow();
+
+      StateMachine.ChangeState<StateProcessGame>();
     }
-    
+
     private UniTask StartWindow() => _uiMediator.StartWindow();
   }
 }

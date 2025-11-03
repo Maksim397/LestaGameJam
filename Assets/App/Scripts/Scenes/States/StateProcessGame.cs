@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using App.Scripts.Infrastructure.Factory;
 using App.Scripts.Infrastructure.PersistentProgress;
 using App.Scripts.Infrastructure.StaticData;
@@ -33,20 +35,16 @@ namespace App.Scripts.Scenes.States
       _uiMediator = uiMediator;
       _progressService = progressService;
     }
-    
+
     public override void OnEnterState()
     {
       SpawnPizza();
-
-      if (_progressService.Progress.TutorialCompleted == false)
-      { 
-        _uiMediator.ShowTutorialWindow();
-        _progressService.Progress.TutorialCompleted = true;
-      }
+      
+      _uiMediator.StartCountdown(TimeSpan.FromSeconds(_levelModel.LevelData.LevelTimeSeconds));
       
       _uiMediator.OnTimeEnd += OnTimerEnd;
     }
-
+    
     public override void Tick()
     {
       if (_levelModel.Pizza == false)
