@@ -37,7 +37,7 @@ namespace App.Scripts.Scenes.States
         }
         
         _uiMediator.ShowWinWindow();
-        _uiMediator.SetPlayer(_progress.Progress.PlayerName,  LevelScore());
+        _uiMediator.SetPlayer(PlayerName(),  LevelScore());
       }
       else if (_levelModel.LevelResult == LevelResult.Loose)
       {
@@ -49,6 +49,7 @@ namespace App.Scripts.Scenes.States
       }
     }
     
+    private string PlayerName() => "You";
     private TimeSpan LevelScore() => 
       TimeSpan.FromSeconds(_staticData.Levels.Data[0].LevelTimeSeconds) - _uiMediator.GetTime();
   }

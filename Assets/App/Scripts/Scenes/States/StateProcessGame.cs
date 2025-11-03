@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Infrastructure.Factory;
+using App.Scripts.Infrastructure.PersistentProgress;
 using App.Scripts.Infrastructure.StaticData;
 using App.Scripts.Infrastructure.UIMediator;
 using App.Scripts.Libs;
@@ -18,23 +19,31 @@ namespace App.Scripts.Scenes.States
     private readonly IGameFactory _gameFactory;
     private readonly PizzaContainer _pizzaContainer;
     private readonly UiMediator _uiMediator;
+    private readonly IPersistentProgressService _progressService;
 
     private List<Pizza> PizzaVariantsByCollectedAmount(int collectedAmount) => _levelModel.LevelData.Pizzas[collectedAmount].Variants;
     private int CollectedPizzas => _levelModel.CollectedPizzas;
     
     public StateProcessGame(LevelModel levelModel, IGameFactory gameFactory, PizzaContainer pizzaContainer,
-      UiMediator uiMediator)
+      UiMediator uiMediator, IPersistentProgressService progressService)
     {
       _levelModel = levelModel;
       _gameFactory = gameFactory;
       _pizzaContainer = pizzaContainer;
       _uiMediator = uiMediator;
+      _progressService = progressService;
     }
     
     public override void OnEnterState()
     {
       SpawnPizza();
 
+      if (_progressService.Progress.TutorialCompleted == false)
+      { 
+        _uiMediator.ShowTutorialWindow();
+        _progressService.Progress.TutorialCompleted = true;
+      }
+      
       _uiMediator.OnTimeEnd += OnTimerEnd;
     }
 
