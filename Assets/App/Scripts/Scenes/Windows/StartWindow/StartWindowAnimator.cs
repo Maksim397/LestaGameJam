@@ -6,7 +6,9 @@ using UnityEngine;
 public class StartWindowAnimator : BaseAnimatorTween
 {
     [SerializeField] private Transform _windowTransform;
-  
+    [SerializeField] private Transform _startButton;
+    [SerializeField] private Transform _quitButton;
+    [SerializeField] private Transform _title; 
     [SerializeField] private Config _config;
   
     public void Show()

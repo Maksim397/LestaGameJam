@@ -15,7 +15,9 @@ namespace App.Scripts.Infrastructure.UIMediator
         [SerializeField] private StartWindow _startWindow;
         [SerializeField] private InGameWindow _inGameWindow;
         [SerializeField] private SetNameWindow _setNameWindow;
-
+        [SerializeField] private TutorialWindow _tutorialWindow;
+        
+        
         private bool _isTimerRunning;
 
         public event Action OnTimeEnd;
@@ -40,12 +42,17 @@ namespace App.Scripts.Infrastructure.UIMediator
             return _inGameWindow.GetTime();
         }
 
+        public void ShowTutorialWindow() => _tutorialWindow.Show();
+        public void HideTutorialWindow() => _tutorialWindow.Hide();
+        
         public void ShowLoadingScreen() => _loadingScreen.Show();
         public void HideLoadingScreen() => _loadingScreen.Hide();
 
         public void ShowPauseWindow() => _pauseWindow.Show();
         public void HidePauseWindow() => _pauseWindow.Hide();
 
+        public void ShowTutorialWindor() => _tutorialWindow.Show();
+        
         public void ShowWinWindow() => _winWindow.Show();
         public void HideWinWindow() => _winWindow.Hide();
 
