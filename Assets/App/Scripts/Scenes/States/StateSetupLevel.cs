@@ -31,22 +31,12 @@ namespace App.Scripts.Scenes.States
     {
       _uiMediator.HideLoadingScreen();
 
-      await SetupUserName();
       await StartWindow();
       SetupLevel();
 
       StateMachine.ChangeState<StateProcessGame>();
     }
     
-    private async UniTask SetupUserName()
-    {
-      if (_persistentProgress.Progress.PlayerName == null)
-      { 
-        _persistentProgress.Progress.PlayerName = await _uiMediator.SetName();
-        _saveLoadService.SaveProgress();
-      }
-    }
-
     private void SetupLevel()
     {
       _levelModel.Reset();
