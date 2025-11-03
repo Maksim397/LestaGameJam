@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Infrastructure.Factory;
 using App.Scripts.Infrastructure.StaticData;
+using App.Scripts.Infrastructure.UIMediator;
 using App.Scripts.Libs;
 using App.Scripts.Libs.StateMachine;
 using App.Scripts.Scenes.Features.Level;
@@ -16,20 +17,25 @@ namespace App.Scripts.Scenes.States
     private readonly LevelModel _levelModel;
     private readonly IGameFactory _gameFactory;
     private readonly PizzaContainer _pizzaContainer;
+    private readonly UiMediator _uiMediator;
 
     private List<Pizza> PizzaVariantsByCollectedAmount(int collectedAmount) => _levelModel.LevelData.Pizzas[collectedAmount].Variants;
     private int CollectedPizzas => _levelModel.CollectedPizzas;
     
-    public StateProcessGame(LevelModel levelModel, IGameFactory gameFactory, PizzaContainer pizzaContainer)
+    public StateProcessGame(LevelModel levelModel, IGameFactory gameFactory, PizzaContainer pizzaContainer,
+      UiMediator uiMediator)
     {
       _levelModel = levelModel;
       _gameFactory = gameFactory;
       _pizzaContainer = pizzaContainer;
+      _uiMediator = uiMediator;
     }
     
     public override void OnEnterState()
     {
       SpawnPizza();
+
+      _uiMediator.OnTimeEnd += OnTimerEnd;
     }
 
     public override void Tick()
@@ -57,7 +63,14 @@ namespace App.Scripts.Scenes.States
     
     public override void OnExitState()
     {
+      _uiMediator.OnTimeEnd -= OnTimerEnd;
       RemovePizza(true);
+    }
+    
+    private void OnTimerEnd()
+    {
+      _levelModel.SetLevelResult(LevelResult.Loose);
+      StateMachine.ChangeState<StateGameEnd>();
     }
 
     private async UniTaskVoid SpawnPizzaWithDelay(int spawnDelay)

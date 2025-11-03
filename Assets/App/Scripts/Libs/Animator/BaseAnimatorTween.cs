@@ -49,5 +49,10 @@ namespace App.Scripts.Infrastructure.Animator
       _animation.Kill(true);
       _animation = null;
     }
+
+    private void OnDestroy()
+    {
+        CancelAnimation();
+    }
   }
 }

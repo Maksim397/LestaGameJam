@@ -5,6 +5,8 @@ using App.Scripts.Libs.StateMachine;
 using App.Scripts.Scenes.Features.Level;
 using App.Scripts.Scenes.Features.Level.Data;
 using App.Scripts.Scenes.States;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class IngredientInteractor : IIngredientInteractor
 {
@@ -32,7 +34,8 @@ public class IngredientInteractor : IIngredientInteractor
             {
                 _uiMediator.RemoveTime(System.TimeSpan.FromSeconds(_secondsToRemove));
             }
-            _gameFactory.RemoveIngredient(ingredient, holder.transform.position);
+            //_gameFactory.RemoveIngredient(ingredient, holder.transform.position);
+            RemoveIngredient(ingredient, holder).Forget();
 
             return true;
         }
@@ -45,7 +48,8 @@ public class IngredientInteractor : IIngredientInteractor
                     _levelModel.SetLevelResult(LevelResult.Loose);
                     _gameStateMachine.ChangeState<StateGameEnd>();
                 }
-                _gameFactory.RemoveIngredient(ingredient, holder.transform.position);
+                //_gameFactory.RemoveIngredient(ingredient, holder.transform.position);
+                RemoveIngredient(ingredient, holder).Forget();
                 return true;
             }
             else
@@ -55,5 +59,12 @@ public class IngredientInteractor : IIngredientInteractor
         }
 
         return false;
+    }
+
+    private async UniTask RemoveIngredient(Ingredient ingredient, Holder holder)
+    {
+        _gameFactory.RemoveIngredient(ingredient);
+        await ingredient.Animator.FallTarget(holder.transform.position);
+        Object.Destroy(ingredient.gameObject);
     }
 }
