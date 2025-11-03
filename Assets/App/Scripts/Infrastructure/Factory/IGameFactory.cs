@@ -10,6 +10,6 @@ namespace App.Scripts.Infrastructure.Factory
   {
     Pizza CreatePizza(Pizza prefab, Transform parent);
     void RemovePizza(bool isLoose);
-    void RemoveIngredient(Ingredient ingredient, Vector3 to);
+    void RemoveIngredient(Ingredient ingredient);
   }
 }

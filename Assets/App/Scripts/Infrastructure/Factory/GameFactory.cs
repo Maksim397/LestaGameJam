@@ -47,13 +47,11 @@ namespace App.Scripts.Infrastructure.Factory
        Object.Destroy(pizza.gameObject);
     }
 
-    public void RemoveIngredient(Ingredient ingredient, Vector3 to)
+    public void RemoveIngredient(Ingredient ingredient)
     {
       var pizza = ingredient.Pizza;
       pizza?.RemoveIngredient(ingredient);
       pizza?.UpdateOverlaps(_physics);
-
-      ingredient.Animator.FallTarget(to).Forget();
     }
   }
 }
