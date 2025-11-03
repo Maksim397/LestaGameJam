@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 5533132752698679303}
+  _particles: {fileID: 3610181730001869724, guid: ac7088043fdabc9499cdd220f2f14643, type: 3}
   <Type>k__BackingField: 6
 --- !u!114 &5533132752698679303
 MonoBehaviour:
@@ -861,6 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 1796240698483330755}
+  _particles: {fileID: 0}
 --- !u!114 &1796240698483330755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,6 +1301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 2061416690030166730}
+  _particles: {fileID: 3610181730001869724, guid: 799ce57edc7442a4ea31974685ee4238, type: 3}
   <Type>k__BackingField: 7
 --- !u!114 &2061416690030166730
 MonoBehaviour:
@@ -1668,6 +1671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 3884030442678289935}
+  _particles: {fileID: 1023999802003393963, guid: 541c57e9c8c7458418a29d93a9d8f794, type: 3}
   <Type>k__BackingField: 0
 --- !u!114 &3884030442678289935
 MonoBehaviour:
@@ -1808,6 +1812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 6939204679104645752}
+  _particles: {fileID: 3610181730001869724, guid: 9a937beb8e404724eb77e1ce3bacfe1d, type: 3}
   <Type>k__BackingField: 4
 --- !u!114 &6939204679104645752
 MonoBehaviour:
@@ -1948,6 +1953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 7538012551933416533}
+  _particles: {fileID: 3610181730001869724, guid: babfe900ae34e1f43bb04be87681095b, type: 3}
   <Type>k__BackingField: 1
 --- !u!114 &7538012551933416533
 MonoBehaviour:
@@ -2409,6 +2415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 5408141280310194582}
+  _particles: {fileID: 3610181730001869724, guid: 4dc23f4e849c3f845915fd260dcea88f, type: 3}
   <Type>k__BackingField: 5
 --- !u!114 &5408141280310194582
 MonoBehaviour:
@@ -3081,6 +3088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 730735664963201754}
+  _particles: {fileID: 3610181730001869724, guid: 82d54b7855e7be341b37bfb5ef4171c7, type: 3}
   <Type>k__BackingField: 3
 --- !u!114 &730735664963201754
 MonoBehaviour:
@@ -3431,6 +3439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 6179063491937173963}
+  _particles: {fileID: 3610181730001869724, guid: e3abc28c0ecc7f649aeea33651903027, type: 3}
   <Type>k__BackingField: 2
 --- !u!114 &6179063491937173963
 MonoBehaviour:
