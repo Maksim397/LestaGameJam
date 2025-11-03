@@ -9,28 +9,28 @@ public class TutorialWindow : MonoBehaviour
 {
     [SerializeField] private UiMediator _uiMediator;
     [SerializeField] private TutorialWindowAnimator _animator;
-
+    
     [SerializeField] private Button _continueButton;
 
     private void Start()
     {
+        Show();
         _continueButton.onClick.AddListener(OnContinue);
     }
 
-
     public void Show()
     {
+        _animator.Show();
         gameObject.SetActive(true);
-        
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        _animator.Hide();
     }
 
     private void OnContinue()
-    {
-        _uiMediator.StartWindow();
+    {  
+        Hide();
     }
 }
