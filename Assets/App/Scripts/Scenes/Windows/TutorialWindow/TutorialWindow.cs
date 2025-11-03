@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using App.Scripts.Infrastructure.UIMediator;
 using UnityEngine;
 using UnityEngine.UI;

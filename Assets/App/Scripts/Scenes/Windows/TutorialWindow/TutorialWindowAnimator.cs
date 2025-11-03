@@ -1,8 +1,6 @@
 using System;
-using System.Collections;using System;
 using App.Scripts.Infrastructure.Animator;
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
