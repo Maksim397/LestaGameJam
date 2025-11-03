@@ -53,7 +53,8 @@ public class GameOverWindow : MonoBehaviour
   
     private void OnMainMenu()
     {
-        
+        Hide();
+        _gameStateMachine.ChangeState<StateSetupLevel>();
     }
     
 }
