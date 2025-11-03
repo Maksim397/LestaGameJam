@@ -1,18 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Collections;using System;
+using App.Scripts.Infrastructure.Animator;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TutorialWindowAnimator : MonoBehaviour
+public class TutorialWindowAnimator : BaseAnimatorTween
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform _windowTransform;
+  
+    [SerializeField] private PauseWindowAnimator.Config _config;
+    [SerializeField] private Text _text;
+    
+    public void Show()
     {
+        CancelAnimation();
+        _windowTransform.localScale = Vector3.zero;
+        _windowTransform.gameObject.SetActive(true);
+
+        var seq = DOTween.Sequence();
+        seq.SetUpdate(true);
+        seq.Append(_windowTransform.DOScale(1f, _config.ScaleTime)
+            .SetEase(_config.ScaleEase)
+            ).Join(_text.DOText(_text.text, 10f)
+            .SetUpdate(true));
         
+        PlaySequence(seq);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Hide()
     {
-        
+        CancelAnimation();
+        _windowTransform.localScale = Vector3.one;
+        _windowTransform.gameObject.SetActive(true);
+
+        var seq = DOTween.Sequence();
+        seq.SetUpdate(true);
+        seq.Append(_windowTransform.DOScale(0f, _config.HideTime)
+            .SetEase(_config.HideEase)
+            .SetUpdate(true)
+            .OnComplete(() => _windowTransform.gameObject.SetActive(false)));
+        PlaySequence(seq);
+    }
+
+    
+    [Serializable]
+    public class Config
+    {
+        public float ScaleTime = 0.8f;
+        public Ease ScaleEase = Ease.OutBack;
+        public float HideTime = 0.4f;
+        public Ease HideEase = Ease.InBack;
     }
 }
