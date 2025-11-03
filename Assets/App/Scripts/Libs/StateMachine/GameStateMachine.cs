@@ -1,65 +1,50 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.Libs.StateMachine;
 using Cysharp.Threading.Tasks;
 using Zenject;
-
-namespace App.Scripts.Libs.StateMachine
+public class GameStateMachine : ITickable
 {
-  public class GameStateMachine : ITickable
+  private readonly Dictionary<Type, GameState> _states = new();
+  private GameState _currentState;
+  private bool _isTransitioning;
+  private GameState _queued;
+
+  public GameStateMachine(IEnumerable<GameState> states)
   {
-    private readonly Dictionary<Type, GameState> _states = new Dictionary<Type, GameState>();
-    private GameState _currentState;
-    private GameState _stateToChange;
+    foreach (var s in states) AddState(s);
+  }
 
-    public GameStateMachine(IEnumerable<GameState> states)
+  public UniTask ChangeStateAsync<T>() where T : GameState =>
+    ProcessChangeStateAsync(_states[typeof(T)]);
+
+  public void ChangeState<T>() where T : GameState =>
+    ChangeStateAsync<T>().Forget(); // удобный шорткат
+
+  public void Tick() => _currentState?.Tick();
+
+  private void AddState(GameState state)
+  {
+    state.StateMachine = this;
+    _states[state.GetType()] = state;
+  }
+
+  private async UniTask ProcessChangeStateAsync(GameState next)
+  {
+    if (_isTransitioning) { _queued = next; return; }
+    _isTransitioning = true;
+
+    _currentState?.OnExitState();
+    _currentState = next;
+    _currentState.OnEnterState();
+    await _currentState.OnEnterStateAsync();
+
+    _isTransitioning = false;
+
+    if (_queued != null)
     {
-      foreach (var state in states)
-        AddState(state);
-    }
-
-    public void ChangeState<T>()
-    {
-      var stateType = typeof(T);
-      if (_states.TryGetValue(stateType, out var state)) _stateToChange = state;
-    }
-
-    public void Tick()
-    {
-      CheckSwitchState();
-
-      _currentState?.Tick();
-    }
-
-    private void AddState(GameState state)
-    {
-      state.StateMachine = this;
-      _states[state.GetType()] = state;
-    }
-
-    private void CheckSwitchState()
-    {
-      if (_stateToChange is null) return;
-
-      var nextState = _stateToChange;
-      _stateToChange = null;
-
-      ProcessChangeState(nextState);
-    }
-
-    private void ProcessChangeState(GameState value)
-    {
-      ExitState();
-
-      _currentState = value;
-      _currentState.OnEnterState();
-      _currentState.OnEnterStateAsync().Forget();
-    }
-
-    private void ExitState()
-    {
-      if (_currentState is null) return;
-
-      _currentState.OnExitState();
+      var q = _queued; _queued = null;
+      await ProcessChangeStateAsync(q);
     }
   }
 }

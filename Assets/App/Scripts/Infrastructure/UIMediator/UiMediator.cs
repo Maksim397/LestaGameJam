@@ -42,7 +42,7 @@ namespace App.Scripts.Infrastructure.UIMediator
             return _inGameWindow.GetTime();
         }
 
-        public void ShowTutorialWindow() => _tutorialWindow.Show();
+        public UniTask ShowTutorialWindow() => _tutorialWindow.Show();
         public void HideTutorialWindow() => _tutorialWindow.Hide();
         
         public void ShowLoadingScreen() => _loadingScreen.Show();
@@ -50,8 +50,6 @@ namespace App.Scripts.Infrastructure.UIMediator
 
         public void ShowPauseWindow() => _pauseWindow.Show();
         public void HidePauseWindow() => _pauseWindow.Hide();
-
-        public void ShowTutorialWindor() => _tutorialWindow.Show();
         
         public void ShowWinWindow() => _winWindow.Show();
         public void HideWinWindow() => _winWindow.Hide();
