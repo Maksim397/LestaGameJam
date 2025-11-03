@@ -35,7 +35,6 @@ public class WinWindow : MonoBehaviour
     } 
     public void Hide()
     {
-        gameObject.SetActive(false);
         _animator.Hide();
     }
 
