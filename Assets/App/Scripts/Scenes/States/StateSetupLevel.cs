@@ -40,8 +40,13 @@ namespace App.Scripts.Scenes.States
       _uiMediator.ShowInGameWindow();
       _uiMediator.StartCountdown(TimeSpan.FromSeconds(_levelModel.LevelData.LevelTimeSeconds));
       _uiMediator.StopCountdown();
-      
-      await _uiMediator.ShowTutorialWindow();
+
+      if (_persistentProgress.Progress.TutorialCompleted == false)
+      {
+        await _uiMediator.ShowTutorialWindow();
+        _persistentProgress.Progress.TutorialCompleted = true;
+        _saveLoadService.SaveProgress();
+      }
 
       StateMachine.ChangeState<StateProcessGame>();
     }

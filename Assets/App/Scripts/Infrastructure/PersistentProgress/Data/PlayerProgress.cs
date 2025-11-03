@@ -6,6 +6,7 @@ namespace App.Scripts.Infrastructure.PersistentProgress.Data
   public class PlayerProgress
   {
     public float BestScore;
+    public bool TutorialCompleted;
     
     public PlayerProgress()
     {
