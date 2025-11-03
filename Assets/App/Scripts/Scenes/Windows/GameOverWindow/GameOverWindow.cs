@@ -11,7 +11,7 @@ public class GameOverWindow : MonoBehaviour
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private UiMediator _uiMediator;
     [SerializeField] private GameOverWindowAnimator _animator;
-    
+    [SerializeField] private AudioSource _looseSound;
     private GameStateMachine _gameStateMachine;
     
     
@@ -20,6 +20,7 @@ public class GameOverWindow : MonoBehaviour
 
     public void Show()
     {
+        _looseSound.Play();
         _animator.Show();
         gameObject.SetActive(true);
         _uiMediator.HideInGameWindow();

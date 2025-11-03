@@ -11,7 +11,7 @@ public class TutorialWindow : MonoBehaviour
 {
     [SerializeField] private UiMediator _uiMediator;
     [SerializeField] private TutorialWindowAnimator _animator;
-    
+    [SerializeField] private AudioSource _tutorialSound;
     [SerializeField] private Button _continueButton;
     
     private UniTaskCompletionSource _completionSource;
@@ -28,6 +28,8 @@ public class TutorialWindow : MonoBehaviour
 
     public UniTask Show()
     {
+        _tutorialSound.Play();
+        
         if (_completionSource != null)
             return _completionSource.Task; // уже показано, вернём текущий таск
 

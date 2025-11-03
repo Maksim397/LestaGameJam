@@ -13,7 +13,7 @@ public class WinWindow : MonoBehaviour
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Transform _contentParent; 
     [SerializeField] private GameObject _recordPrefab;
-
+    [SerializeField] private AudioSource _winSound;
     [SerializeField] private UiMediator _uiMediator;
     
     [SerializeField]private List<LeaderboardRecord> _records;
@@ -28,6 +28,7 @@ public class WinWindow : MonoBehaviour
     
     public void Show()
     {
+        _winSound.Play();
         _animator.Show();
         _uiMediator.HideInGameWindow();
         gameObject.SetActive(true);
