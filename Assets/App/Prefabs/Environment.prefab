@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 1796240698483330755}
-  _particles: {fileID: 0}
+  _particles: {fileID: 138911140719657192, guid: 91ca2fb9801146e47ad2acfff498d128, type: 3}
 --- !u!114 &1796240698483330755
 MonoBehaviour:
   m_ObjectHideFlags: 0
